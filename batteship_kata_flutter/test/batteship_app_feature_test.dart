@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('batteship should', () {
+  group('batteship app should', () {
     testWidgets('print reporting', (WidgetTester tester) async {
       await aGivenBoard(tester);
 
