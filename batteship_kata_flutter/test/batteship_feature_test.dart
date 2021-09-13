@@ -1,12 +1,11 @@
-import 'package:batteship_kata_flutter/presentation/app.dart';
+import 'package:batteship_kata_flutter/domain/ships.dart';
+import 'package:batteship_kata_flutter/presentation/board_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('batteship should', () {
-
     testWidgets('print reporting', (WidgetTester tester) async {
-
       await aGivenBoard(tester);
 
       await whenPlayGame(tester);
@@ -17,27 +16,21 @@ void main() {
       expect(find.text('d'), findsNWidgets(2));
       expect(find.text('c'), findsNWidgets(3));
       expect(find.text('x'), findsNWidgets(2));
-
     });
   });
 }
 
 Future<void> aGivenBoard(WidgetTester tester) async {
-  
-  final aGivenBoard = BoardWidget(
-    ships:[
-       Destroyer(x: 2, y: 3),
-       Gunship(x: 9, y: 9),
-       Gunship(x: 7, y: 2),
-       Gunship(x: 2, y: 3),
-      );
-    ]);
-  
-    final app = MaterialApp(
-     home: Scaffold(
-      body:  BoardWidget()
-     ),
-   );
+  final board = BoardWidget(ships: [
+    Destroyer(x: 2, y: 3, direction: Direction.vertical),
+    Gunship(x: 9, y: 9),
+    Gunship(x: 7, y: 2),
+    Gunship(x: 2, y: 3),
+  ]);
+
+  final app = MaterialApp(
+    home: Scaffold(body: board),
+  );
 
   await tester.pumpWidget(app);
 }
