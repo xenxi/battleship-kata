@@ -4,24 +4,42 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('batteship should', () {
-    testWidgets('print reporting', (WidgetTester tester) async {
-      final aGivenBoard = BoardWidget(
-          carrier: Carrier(x: 3, y: 2),
-          destroyer: Destroyer(x: 8, y: 4),
-          gunship: Gunship(x: 6, y: 4));
 
-      await tester.pumpWidget(aGivenBoard);
+    testWidgets('print reporting', (WidgetTester tester) async {
+
+      await aGivenBoard(tester);
 
       await whenPlayGame(tester);
 
       expect(find.text('o'), findsNWidgets(15));
-      expect(find.text('X'), findsNWidgets(7));
+      expect(find.text('X'), findsNWidgets(6));
       expect(find.text('g'), findsNWidgets(1));
       expect(find.text('d'), findsNWidgets(2));
       expect(find.text('c'), findsNWidgets(3));
       expect(find.text('x'), findsNWidgets(2));
+
     });
   });
+}
+
+Future<void> aGivenBoard(WidgetTester tester) async {
+  
+  final aGivenBoard = BoardWidget(
+    ships:[
+       Destroyer(x: 2, y: 3),
+       Gunship(x: 9, y: 9),
+       Gunship(x: 7, y: 2),
+       Gunship(x: 2, y: 3),
+      );
+    ]);
+  
+    final app = MaterialApp(
+     home: Scaffold(
+      body:  BoardWidget()
+     ),
+   );
+
+  await tester.pumpWidget(app);
 }
 
 Future<void> whenPlayGame(WidgetTester tester) async {
