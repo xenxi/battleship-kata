@@ -13,6 +13,7 @@ void main() {
     group('draw board with size', () {
       final sizes = <Size>[
         Size(10, 10),
+        Size(5, 10),
       ];
       sizes.forEach((size) {
         testWidgets('height: ${size.height} width: ${size.width}',
