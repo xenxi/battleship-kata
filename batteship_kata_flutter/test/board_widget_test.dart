@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:batteship_kata_flutter/presentation/board_widget.dart';
+import 'package:batteship_kata_flutter/presentation/cell_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -22,6 +23,9 @@ void main() {
           ));
 
           await tester.pumpWidget(aGivenBoard);
+
+          final expectedNumberOfCells = (size.width * size.height).round();
+          expect(find.byType(CellWidget), findsNWidgets(expectedNumberOfCells));
         });
       });
     });

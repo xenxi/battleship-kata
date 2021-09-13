@@ -1,3 +1,4 @@
+import 'package:batteship_kata_flutter/presentation/cell_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:batteship_kata_flutter/domain/ships.dart';
@@ -14,7 +15,21 @@ class BoardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: null,
+      child: Column(
+        children: [..._buildCells(context)],
+      ),
     );
+  }
+
+  List<Widget> _buildCells(BuildContext context) {
+    final numOfCells = size.height * size.width;
+
+    final cells = <Widget>[];
+
+    for (var i = 0; i < numOfCells; i++) {
+      cells.add(CellWidget());
+    }
+
+    return cells;
   }
 }
