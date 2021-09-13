@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('board widget should', () {
-    final app = (BoardWidget board) => MaterialApp(
+    final createAppWith = (BoardWidget board) => MaterialApp(
           home: Scaffold(body: board),
         );
     group('draw board with size', () {
@@ -14,12 +14,14 @@ void main() {
         Size(10, 10),
       ];
       sizes.forEach((size) {
-        test('height: ${size.height} width: ${size.width}',
+        testWidgets('height: ${size.height} width: ${size.width}',
             (WidgetTester tester) async {
-          await tester.pumpWidget(app(BoardWidget(
+          final aGivenBoard = createAppWith(BoardWidget(
             size: size,
             ships: [],
-          )));
+          ));
+
+          await tester.pumpWidget(aGivenBoard);
         });
       });
     });
