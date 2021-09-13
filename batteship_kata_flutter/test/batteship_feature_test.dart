@@ -21,7 +21,7 @@ void main() {
 }
 
 Future<void> aGivenBoard(WidgetTester tester) async {
-  final board = BoardWidget(ships: [
+  final board = BoardWidget(size: Size(10, 10), ships: [
     Destroyer(x: 2, y: 3, direction: Direction.vertical),
     Gunship(x: 9, y: 9),
     Gunship(x: 7, y: 2),
@@ -80,7 +80,8 @@ Future<void> whenPlayGame(WidgetTester tester) async {
   for (var row = 0; row < 10; row++) {
     for (var col = 0; col < 10; col++) {
       if (cells[row][col].isNotEmpty) {
-        await tester.tap(find.byKey(Key('x:$col;y:$row')));
+        final cell = find.byKey(Key('x:$col;y:$row'));
+        await tester.tap(cell);
       }
     }
   }
