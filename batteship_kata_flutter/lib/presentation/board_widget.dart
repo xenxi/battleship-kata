@@ -22,12 +22,14 @@ class BoardWidget extends StatelessWidget {
   }
 
   List<Widget> _buildCells(BuildContext context) {
-    final numOfCells = size.height * size.width;
-
     final cells = <Widget>[];
 
-    for (var i = 0; i < numOfCells; i++) {
-      cells.add(CellWidget());
+    for (var row = 0; row < size.height; row++) {
+      for (var col = 0; col < size.width; col++) {
+        cells.add(CellWidget(
+          key: Key('x:$col;y:$row'),
+        ));
+      }
     }
 
     return cells;

@@ -30,5 +30,22 @@ void main() {
         });
       });
     });
+
+    testWidgets('draw all cells with correct keys',
+        (WidgetTester tester) async {
+      var aGivenBoarSize = Size(2, 2);
+      final aGivenBoard = createAppWith(BoardWidget(
+        size: aGivenBoarSize,
+        ships: [],
+      ));
+
+      await tester.pumpWidget(aGivenBoard);
+
+      for (var row = 0; row < aGivenBoarSize.height; row++) {
+        for (var col = 0; col < aGivenBoarSize.width; col++) {
+          expect(find.byKey(Key('x:$col;y:$row')), findsOneWidget);
+        }
+      }
+    });
   });
 }
