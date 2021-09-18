@@ -6,11 +6,19 @@ namespace BattleshipKata.Tests
     [TestFixture]
     public class GameFeature
     {
+        private IGamePrinter gamePrinter;
+        private Game game;
+
+        [SetUp]
+        public void SetUp()
+        {
+            gamePrinter = Substitute.For<IGamePrinter>();
+            game = new Game();
+        }
+
         [Test]
         public void print_game_report()
         {
-            var gamePrinter = Substitute.For<IGamePrinter>();
-            var game = new Game();
             aGivenPlayerShots(game);
 
             game.Print();
