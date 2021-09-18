@@ -1,0 +1,10 @@
+C:\repos\battleship-kata\BattleshipKataDotNet\BattleshipKata\bin\Debug\netcoreapp3.1\BattleshipKata.deps.json
+C:\repos\battleship-kata\BattleshipKataDotNet\BattleshipKata\bin\Debug\netcoreapp3.1\BattleshipKata.dll
+C:\repos\battleship-kata\BattleshipKataDotNet\BattleshipKata\bin\Debug\netcoreapp3.1\BattleshipKata.pdb
+C:\repos\battleship-kata\BattleshipKataDotNet\BattleshipKata\obj\Debug\netcoreapp3.1\BattleshipKata.csproj.AssemblyReference.cache
+C:\repos\battleship-kata\BattleshipKataDotNet\BattleshipKata\obj\Debug\netcoreapp3.1\BattleshipKata.GeneratedMSBuildEditorConfig.editorconfig
+C:\repos\battleship-kata\BattleshipKataDotNet\BattleshipKata\obj\Debug\netcoreapp3.1\BattleshipKata.AssemblyInfoInputs.cache
+C:\repos\battleship-kata\BattleshipKataDotNet\BattleshipKata\obj\Debug\netcoreapp3.1\BattleshipKata.AssemblyInfo.cs
+C:\repos\battleship-kata\BattleshipKataDotNet\BattleshipKata\obj\Debug\netcoreapp3.1\BattleshipKata.csproj.CoreCompileInputs.cache
+C:\repos\battleship-kata\BattleshipKataDotNet\BattleshipKata\obj\Debug\netcoreapp3.1\BattleshipKata.dll
+C:\repos\battleship-kata\BattleshipKataDotNet\BattleshipKata\obj\Debug\netcoreapp3.1\BattleshipKata.pdb
