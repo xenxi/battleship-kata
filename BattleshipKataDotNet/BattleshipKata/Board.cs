@@ -4,11 +4,12 @@ namespace BattleshipKata.Tests
 {
     public class Board : IBoard
     {
-        public Board(int width, int heigth)
+        public Board(Size size) 
         {
-            Width = width;
-            Height = heigth;
+            Width = size.Width;
+            Height = size.Height;
         }
+        public Board(int width, int height) : this(new Size(width: width, height: height)) { }
 
         public int Height { get; }
         public int Width { get; }
