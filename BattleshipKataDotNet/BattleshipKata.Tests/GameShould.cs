@@ -1,6 +1,7 @@
 ﻿using BattleshipKata.Boards;
 using BattleshipKata.Printers;
 using BattleshipKata.Ships;
+using BattleshipKata.Tests.Ships;
 using BattleshipKata.ValueObjects;
 using NSubstitute;
 using NUnit.Framework;
@@ -47,7 +48,7 @@ namespace BattleshipKata.Tests
         [Test]
         public void start_a_game_with_fleet_of_ships()
         {
-            var aGivenFleet = new List<Ship> { new Ship(), new Ship() };
+            var aGivenFleet = ShipMother.Randoms();
 
             game.Start(aGivenFleet);
 
