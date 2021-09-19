@@ -1,6 +1,5 @@
 ﻿using BattleshipKata.Ships;
 using BattleshipKata.Tests;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace BattleshipKata
@@ -18,6 +17,7 @@ namespace BattleshipKata
 
         public void Fire(int y, int x)
         {
+            board.Fire(new Coordinates(x: x, y: y));
         }
 
         public void Print()
