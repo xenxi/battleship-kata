@@ -1,5 +1,7 @@
-﻿using BattleshipKata.Tests;
-using System;
+﻿using BattleshipKata.Ships;
+using BattleshipKata.Tests;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace BattleshipKata
 {
@@ -23,9 +25,12 @@ namespace BattleshipKata
             printer.Print(board);
         }
 
-        public void Start(object aGivenFleet)
+        public void Start(IList<Ship> aGivenFleet)
         {
-            throw new NotImplementedException();
+            foreach (var ship in aGivenFleet)
+            {
+                board.PlaceShip(ship);
+            }
         }
     }
 }

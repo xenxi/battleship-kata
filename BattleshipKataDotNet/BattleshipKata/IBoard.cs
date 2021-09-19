@@ -1,8 +1,12 @@
-﻿namespace BattleshipKata.Tests
+﻿using BattleshipKata.Ships;
+
+namespace BattleshipKata.Tests
 {
     public interface IBoard
     {
-        int Width { get; }
         int Height { get; }
+        int Width { get; }
+
+        void PlaceShip(Ship ship);
     }
 }

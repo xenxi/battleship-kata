@@ -1,4 +1,6 @@
-﻿namespace BattleshipKata.Tests
+﻿using BattleshipKata.Ships;
+
+namespace BattleshipKata.Tests
 {
     public class Board : IBoard
     {
@@ -10,5 +12,11 @@
 
         public int Height { get; }
         public int Width { get; }
+
+
+        public void PlaceShip(Ship ship)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
