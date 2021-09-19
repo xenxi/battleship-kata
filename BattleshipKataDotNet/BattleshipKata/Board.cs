@@ -13,6 +13,10 @@ namespace BattleshipKata.Tests
         public int Height { get; }
         public int Width { get; }
 
+        public void Fire(Coordinates expectedCoordinates)
+        {
+            throw new System.NotImplementedException();
+        }
 
         public void PlaceShip(Ship ship)
         {

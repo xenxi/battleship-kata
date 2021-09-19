@@ -8,5 +8,6 @@ namespace BattleshipKata.Tests
         int Width { get; }
 
         void PlaceShip(Ship ship);
+        void Fire(Coordinates expectedCoordinates);
     }
 }
