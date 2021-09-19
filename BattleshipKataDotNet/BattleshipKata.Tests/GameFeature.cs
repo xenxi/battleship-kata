@@ -13,7 +13,8 @@ namespace BattleshipKata.Tests
         public void SetUp()
         {
             gamePrinter = Substitute.For<IGamePrinter>();
-            game = new Game(gamePrinter);
+            BoardPrinter printer = new BoardPrinter();
+            game = new Game(printer);
         }
 
         [Test]
