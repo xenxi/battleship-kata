@@ -1,6 +1,6 @@
 ﻿namespace BattleshipKata
 {
-    public   interface IGamePrinter
+    public interface IGamePrinter
     {
         void Print(string text);
     }

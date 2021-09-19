@@ -15,7 +15,7 @@ namespace BattleshipKata.Tests
             gamePrinter = Substitute.For<IGamePrinter>();
             BoardPrinter printer = new BoardPrinter();
             var board = new Board(10, 10);
-            
+
             game = new Game(board, printer);
         }
 

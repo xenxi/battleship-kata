@@ -11,6 +11,7 @@ namespace BattleshipKata.Tests
         private IBoard board;
         private Game game;
         private IBoardPrinter printer;
+
         [Test]
         public void launches_a_torpedo_at_given_coordinates()
         {
