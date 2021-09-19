@@ -9,13 +9,12 @@ namespace BattleshipKata.Tests
         [Test]
         public void create_new_board_with_correct_size()
         {
-            var aGivenHeigh = 10;
-            var aGivenWidth = 15;
+            var aGivenBoardSize = new Size(height: 10, width: 15);
 
-            var board = Board.From(height: aGivenHeigh, width: aGivenWidth);
+            var board = new Board(aGivenBoardSize);
 
-            board.Height.Should().Be(aGivenHeigh);
-            board.Width.Should().Be(aGivenWidth);
+            board.Width.Should().Be(aGivenBoardSize.Width);
+            board.Height.Should().Be(aGivenBoardSize.Height);
         }
     }
 }
