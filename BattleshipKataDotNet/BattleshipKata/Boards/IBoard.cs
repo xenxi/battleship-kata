@@ -1,6 +1,7 @@
 ﻿using BattleshipKata.Ships;
+using BattleshipKata.ValueObjects;
 
-namespace BattleshipKata.Tests
+namespace BattleshipKata.Boards
 {
     public interface IBoard
     {

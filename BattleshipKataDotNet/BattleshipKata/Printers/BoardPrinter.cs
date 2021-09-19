@@ -1,6 +1,6 @@
-﻿using BattleshipKata.Tests;
+﻿using BattleshipKata.Boards;
 
-namespace BattleshipKata
+namespace BattleshipKata.Printers
 {
     public class BoardPrinter : IBoardPrinter
     {

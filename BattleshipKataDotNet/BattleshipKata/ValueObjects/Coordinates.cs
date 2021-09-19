@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BattleshipKata
+namespace BattleshipKata.ValueObjects
 {
     public class Coordinates : IEquatable<Coordinates>
     {

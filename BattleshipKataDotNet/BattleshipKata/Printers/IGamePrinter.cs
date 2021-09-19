@@ -1,4 +1,4 @@
-﻿namespace BattleshipKata
+﻿namespace BattleshipKata.Printers
 {
     public interface IGamePrinter
     {

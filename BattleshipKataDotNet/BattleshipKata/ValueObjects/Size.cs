@@ -1,4 +1,4 @@
-﻿namespace BattleshipKata.Tests
+﻿namespace BattleshipKata.ValueObjects
 {
     public class Size
     {
@@ -8,8 +8,8 @@
             Height = height;
         }
 
-        public int Width { get;  }
-        public int Height { get;  }
+        public int Width { get; }
+        public int Height { get; }
 
     }
 }

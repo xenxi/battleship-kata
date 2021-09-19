@@ -1,7 +1,9 @@
-﻿using FluentAssertions;
+﻿using BattleshipKata.Boards;
+using BattleshipKata.ValueObjects;
+using FluentAssertions;
 using NUnit.Framework;
 
-namespace BattleshipKata.Tests
+namespace BattleshipKata.Tests.Boards
 {
     [TestFixture]
     public class BoardShould

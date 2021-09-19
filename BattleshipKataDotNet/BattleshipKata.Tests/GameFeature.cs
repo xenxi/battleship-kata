@@ -1,4 +1,6 @@
-﻿using NSubstitute;
+﻿using BattleshipKata.Boards;
+using BattleshipKata.Printers;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace BattleshipKata.Tests

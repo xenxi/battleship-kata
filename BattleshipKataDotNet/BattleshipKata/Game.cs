@@ -1,5 +1,7 @@
-﻿using BattleshipKata.Ships;
-using BattleshipKata.Tests;
+﻿using BattleshipKata.Boards;
+using BattleshipKata.Printers;
+using BattleshipKata.Ships;
+using BattleshipKata.ValueObjects;
 using System.Collections.Generic;
 
 namespace BattleshipKata
