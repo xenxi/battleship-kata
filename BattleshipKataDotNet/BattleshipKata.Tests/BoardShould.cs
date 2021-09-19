@@ -12,7 +12,7 @@ namespace BattleshipKata.Tests
             var aGivenHeigh = 10;
             var aGivenWidth = 15;
 
-            var board = new Board(height: aGivenHeigh, width: aGivenWidth);
+            var board = Board.From(height: aGivenHeigh, width: aGivenWidth);
 
             board.Height.Should().Be(aGivenHeigh);
             board.Width.Should().Be(aGivenWidth);

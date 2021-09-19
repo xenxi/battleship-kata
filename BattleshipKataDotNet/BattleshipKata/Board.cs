@@ -9,7 +9,8 @@ namespace BattleshipKata.Tests
             Width = size.Width;
             Height = size.Height;
         }
-        public Board(int width, int height) : this(new Size(width: width, height: height)) { }
+        public static Board From(int width, int height)
+            => new Board(new Size(width: width, height: height));
 
         public int Height { get; }
         public int Width { get; }
