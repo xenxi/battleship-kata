@@ -4,6 +4,6 @@ namespace BattleshipKata
 {
     public interface IBoardPrinter
     {
-        void Print(Board board);
+        void Print(IBoard board);
     }
 }

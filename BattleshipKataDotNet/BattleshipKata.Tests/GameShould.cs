@@ -8,20 +8,23 @@ namespace BattleshipKata.Tests
     {
         private Game game;
         private IBoardPrinter printer;
+        private IBoard board;
+
         [Test]
         public void print_a_empty_game()
         {
             game.Print();
 
-            var expectedEmptyBoard = new Board(width: 10, heigth: 10);
-            printer.Received(1).Print(expectedEmptyBoard);
+            printer.Received(1).Print(board);
         }
 
         [SetUp]
         public void SetUp()
         {
             printer = Substitute.For<IBoardPrinter>();
-            game = new Game(printer);
+            board = Substitute.For<IBoard>();
+
+            game = new Game(board, printer);
         }
     }
 }

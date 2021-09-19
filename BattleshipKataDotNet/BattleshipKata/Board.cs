@@ -1,28 +1,14 @@
-﻿using System;
-
-namespace BattleshipKata.Tests
+﻿namespace BattleshipKata.Tests
 {
-    public class Board : IEquatable<Board>
+    public class Board : IBoard
     {
-        private int width;
-        private int heigth;
-
         public Board(int width, int heigth)
         {
-            this.width = width;
-            this.heigth = heigth;
+            Width = width;
+            Height = heigth;
         }
 
-        public override bool Equals(object obj)
-        {
-            return Equals(obj as Board);
-        }
-
-        public bool Equals(Board other)
-        {
-            return other != null &&
-                   width == other.width &&
-                   heigth == other.heigth;
-        }
+        public int Height { get; }
+        public int Width { get; }
     }
 }

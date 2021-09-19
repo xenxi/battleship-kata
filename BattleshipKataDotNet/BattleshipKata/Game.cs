@@ -1,14 +1,16 @@
 ﻿using BattleshipKata.Tests;
+using System;
 
 namespace BattleshipKata
 {
     public class Game
     {
-        private readonly Board board;
+        private readonly IBoard board;
         private readonly IBoardPrinter printer;
-        public Game(IBoardPrinter printer)
+
+        public Game(IBoard board, IBoardPrinter printer)
         {
-            this.board = new Board(10, 10);
+            this.board = board;
             this.printer = printer;
         }
 
@@ -19,6 +21,11 @@ namespace BattleshipKata
         public void Print()
         {
             printer.Print(board);
+        }
+
+        public void Start(object aGivenFleet)
+        {
+            throw new NotImplementedException();
         }
     }
 }
