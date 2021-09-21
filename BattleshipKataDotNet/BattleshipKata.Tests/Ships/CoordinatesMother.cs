@@ -13,8 +13,8 @@ namespace BattleshipKata.Tests.Ships
 
         public static Coordinates CreateOutside(Size size)
         {
-            var x = MotherCreator.Random().Number(min: size.Width + 1);
-            var y = MotherCreator.Random().Number(max: size.Height + 1);
+            var x = MotherCreator.Random().Number(min: size.Width + 1, max: size.Height * 2);
+            var y = MotherCreator.Random().Number(min: size.Height + 1, max: size.Height * 2);
 
             return Create(x: x, y: y);
         }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BattleshipKata.Tests.Boards
+namespace BattleshipKata.Exceptions
 {
     public class InvalidCoordinates : Exception
     {

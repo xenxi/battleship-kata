@@ -5,15 +5,14 @@ namespace BattleshipKata.ValueObjects
 {
     public class Coordinates : IEquatable<Coordinates>
     {
-        private object x;
-        private object y;
-
-        public Coordinates(object x, object y)
+        public Coordinates(int x, int y)
         {
-            this.x = x;
-            this.y = y;
+            X = x;
+            Y = y;
         }
 
+        public int Y { get; }
+        public int X { get; }
         public override bool Equals(object obj)
         {
             return Equals(obj as Coordinates);
@@ -22,8 +21,8 @@ namespace BattleshipKata.ValueObjects
         public bool Equals(Coordinates other)
         {
             return other != null &&
-                   EqualityComparer<object>.Default.Equals(x, other.x) &&
-                   EqualityComparer<object>.Default.Equals(y, other.y);
+                   EqualityComparer<object>.Default.Equals(X, other.X) &&
+                   EqualityComparer<object>.Default.Equals(Y, other.Y);
         }
     }
 }

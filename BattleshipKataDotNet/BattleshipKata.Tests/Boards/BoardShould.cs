@@ -1,4 +1,5 @@
 ﻿using BattleshipKata.Boards;
+using BattleshipKata.Exceptions;
 using BattleshipKata.Ships;
 using BattleshipKata.Tests.Ships;
 using BattleshipKata.ValueObjects;

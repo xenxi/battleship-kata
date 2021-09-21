@@ -1,5 +1,7 @@
-﻿using BattleshipKata.Ships;
+﻿using BattleshipKata.Exceptions;
+using BattleshipKata.Ships;
 using BattleshipKata.ValueObjects;
+using System;
 using System.Collections.Generic;
 
 namespace BattleshipKata.Boards
@@ -20,7 +22,7 @@ namespace BattleshipKata.Boards
         public IReadOnlyList<Ship> GetFleets() => ships.AsReadOnly();
 
         public static Board From(int width, int height)
-                    => new Board(new Size(width: width, height: height));
+            => new Board(new Size(width: width, height: height));
 
         public void Fire(Coordinates expectedCoordinates)
         {
@@ -29,7 +31,12 @@ namespace BattleshipKata.Boards
 
         public void PlaceShip(Ship ship)
         {
+            if (Size.IsOutsideBoard(ship.Position))
+                throw new InvalidCoordinates();
+
             ships.Add(ship);
         }
+
+  
     }
 }
