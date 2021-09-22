@@ -13,6 +13,8 @@ namespace BattleshipKata.Tests.Boards
     public class BoardShould
     {
         private Board board;
+        private const int WIDTH = 10;
+        private const int HEIGHT = 10;
 
         [Test]
         public void create_new_board_with_correct_size()
@@ -38,7 +40,7 @@ namespace BattleshipKata.Tests.Boards
         [SetUp]
         public void SetUp()
         {
-            board = Board.From(10, 10);
+            board = Board.From(WIDTH, HEIGHT);
         }
 
         [Test]
