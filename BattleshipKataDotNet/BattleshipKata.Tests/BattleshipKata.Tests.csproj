@@ -20,8 +20,4 @@
     <ProjectReference Include="..\BattleshipKata\BattleshipKata.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ValueObjects\" />
-  </ItemGroup>
-
 </Project>

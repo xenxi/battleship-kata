@@ -1,6 +1,7 @@
-﻿using BattleshipKata.ValueObjects;
+﻿using BattleshipKata.Tests.Ships;
+using BattleshipKata.ValueObjects;
 
-namespace BattleshipKata.Tests.Ships
+namespace BattleshipKata.Tests.ValueObjects
 {
     public static class CoordinatesMother
     {
