@@ -9,8 +9,11 @@ namespace BattleshipKata.Boards
     public class Board : IBoard
     {
         private readonly List<Ship> ships;
+        private readonly Cells Cells;
+
         public Board(Size size)
         {
+            Cells = new Cells(size);
             Size = size;
             ships = new List<Ship>();
         }
@@ -26,17 +29,15 @@ namespace BattleshipKata.Boards
 
         public void Fire(Coordinates expectedCoordinates)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void PlaceShip(Ship ship)
         {
-            if (Size.IsOutsideBoard(ship.Position))
+            if (!Cells.Contains(ship.Coordinates))
                 throw new InvalidCoordinates();
 
             ships.Add(ship);
         }
-
-  
     }
 }

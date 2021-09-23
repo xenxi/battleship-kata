@@ -46,8 +46,8 @@ namespace BattleshipKata.Tests.Boards {
             action.Should().Throw<InvalidCoordinates>();
         }
 
-        [TestCase(9, 10, Orientation.Horizontal)]
-        [TestCase(10, 10, Orientation.Horizontal)]
+        [TestCase(WIDTH - 1, HEIGHT, Orientation.Horizontal)]
+        [TestCase(WIDTH, HEIGHT, Orientation.Horizontal)]
         [TestCase(0, 0, Orientation.Vertical)]
         [TestCase(0, 1, Orientation.Vertical)]
         public void throw_invalid_coordinates_exception_when_not_all_the_squares_of_a_ship_hit_on_the_board(int x, int y, Orientation orientation) {
