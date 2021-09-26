@@ -8,13 +8,13 @@ namespace BattleshipKata.Tests
     [TestFixture]
     public class GameFeature
     {
-        private IGamePrinter gamePrinter;
+        private IStringPrinter gamePrinter;
         private Game game;
 
         [SetUp]
         public void SetUp()
         {
-            gamePrinter = Substitute.For<IGamePrinter>();
+            gamePrinter = Substitute.For<IStringPrinter>();
             StringBoardPrinter printer = new StringBoardPrinter(gamePrinter);
             var board = Board.From(10, 10);
 
