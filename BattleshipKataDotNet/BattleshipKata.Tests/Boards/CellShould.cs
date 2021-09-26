@@ -36,14 +36,22 @@ namespace BattleshipKata.Tests.Boards
         }
 
         [Test]
-        public void has_hit_status_when_shoots_and_has_ship()
+        public void has_sunk_status_when_shoots_and_has_ship_with_one_life()
         {
-            var aGivenDestoyer = DestroyerMother.Random();
-            var cell = new Cell(aGivenDestoyer);
+            var cell = AGivenCellWithShipWithOneLife();
 
             cell.Fire();
 
-            cell.Status.Should().Be(CellStatus.Hit);
+            cell.Status.Should().Be(CellStatus.Sunk);
+        }
+
+        private static Cell AGivenCellWithShipWithOneLife()
+        {
+            var aGivenDestoyer = DestroyerMother.Random();
+            var cell = new Cell(aGivenDestoyer);
+            for (int i = 0; i < aGivenDestoyer.Coordinates.Count - 1; i++)
+                aGivenDestoyer.Fire();
+            return cell;
         }
     }
 }

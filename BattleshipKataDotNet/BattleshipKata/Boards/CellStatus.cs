@@ -5,6 +5,7 @@
         Water,
         Failed,
         Destoyer,
-        Hit
+        Hit,
+        Sunk
     }
 }
