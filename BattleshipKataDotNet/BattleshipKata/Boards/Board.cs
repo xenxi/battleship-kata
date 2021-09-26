@@ -49,7 +49,7 @@ namespace BattleshipKata.Boards
             {
                 for (var y = 0; y < size.Height; y++)
                 {
-                    grid[x, y] = Cell.WaterCell();
+                    grid[x, y] = Cell.Empty();
                 }
             }
 
