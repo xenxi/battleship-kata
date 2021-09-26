@@ -45,7 +45,7 @@ namespace BattleshipKata.Tests.Boards {
         [Test]
         public void throw_invalid_coordinates_exception_when_place_ship_outside_board() {
             var aGivenOutSideBoardCoordinates = CoordinatesMother.CreateOutside(board.Size);
-            var aGivenShip = ShipMother.Random(coordinates: aGivenOutSideBoardCoordinates);
+            var aGivenShip = DestroyerMother.Random(coordinates: aGivenOutSideBoardCoordinates);
 
             Action action = () => board.PlaceShip(aGivenShip);
 
@@ -57,7 +57,7 @@ namespace BattleshipKata.Tests.Boards {
         [TestCase(0, 0, Orientation.Vertical)]
         [TestCase(0, 1, Orientation.Vertical)]
         public void throw_invalid_coordinates_exception_when_not_all_the_squares_of_a_ship_hit_on_the_board(int x, int y, Orientation orientation) {
-            var aGivenShip = ShipMother.Create(coordinates: CoordinatesMother.Create(x, y), orientation);
+            var aGivenShip = DestroyerMother.Create(coordinates: CoordinatesMother.Create(x, y), orientation);
 
             Action action = () => board.PlaceShip(aGivenShip);
 

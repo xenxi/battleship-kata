@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace BattleshipKata.Tests.Ships
 {
-    public static class ShipMother
+    public static class DestroyerMother
     {
         public static Ship Create(Coordinates coordinates, Orientation orientation)
         {
