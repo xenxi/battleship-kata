@@ -17,6 +17,12 @@ namespace BattleshipKata.Tests.Ships
             destroyer.Coordinates.Count.Should().Be(3);
         }
 
+        [Test]
+        public void has_three_lives()
+        {
+            destroyer.Lives.Should().Be(3);
+        }
+
         [SetUp]
         public void SetUp()
         {
