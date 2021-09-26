@@ -28,12 +28,14 @@ namespace BattleshipKata.Tests.Boards {
 
         [Test]
         public void place_a_destroyer() {
-            var aGivenCoordinates = new Coordinates(0, 0);
-            var aGivenDestroyer = new Destroyer(Orientation.Horizontal, aGivenCoordinates);
+            var aGivenInitialCoordinates = new Coordinates(0, 0);
+            var aGivenDestroyer = new Destroyer(Orientation.Horizontal, aGivenInitialCoordinates);
 
             board.PlaceShip(aGivenDestroyer);
 
-            board.GetFleets().Should().ContainEquivalentOf(aGivenDestroyer);
+            foreach (var coordinate in aGivenDestroyer.Coordinates)
+                board.CellsAt(coordinate).Ship.Should().Be(aGivenDestroyer);
+
         }
 
         [Test]
