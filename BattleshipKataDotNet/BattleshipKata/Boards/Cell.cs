@@ -1,5 +1,4 @@
 ﻿using BattleshipKata.Ships;
-using System;
 
 namespace BattleshipKata.Boards
 {
@@ -16,5 +15,7 @@ namespace BattleshipKata.Boards
         public void Fire()
         {
         }
+
+        public static Cell WaterCell() => new Cell(null);
     }
 }
