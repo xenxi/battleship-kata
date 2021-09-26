@@ -6,6 +6,7 @@
         Failed,
         Destoyer,
         Hit,
-        Sunk
+        Sunk,
+        Carrier
     }
 }
