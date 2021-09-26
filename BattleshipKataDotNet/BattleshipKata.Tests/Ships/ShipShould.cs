@@ -74,7 +74,7 @@ namespace BattleshipKata.Tests.Ships
         [Test]
         public void has_touched_status_when_has_shot()
         {
-            var aGivenShip = ShipMother.Random();
+            var aGivenShip = ShipMother.Random(lenght: 2);
 
             aGivenShip.Shot();
 
