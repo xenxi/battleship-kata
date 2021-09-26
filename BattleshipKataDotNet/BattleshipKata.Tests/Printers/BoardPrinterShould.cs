@@ -68,6 +68,20 @@ namespace BattleshipKata.Tests.Printers
 
             gamePrinter.Received(1).Print("3|   |   | d | x | d |   |   |   |   |   |");
         }
+        [Test]
+        public void print_sunk_ship()
+        {
+            var aGivenBoard = BoardMother.Random(size: SizeMother.Random(width: 10, height: 5));
+            var aGivenDestroyer = new Destroyer(Orientation.Horizontal, new Coordinates(x: 2, y: 3));
+            aGivenBoard.PlaceShip(aGivenDestroyer);
+            aGivenBoard.Fire(new Coordinates(x: 2, y: 3));
+            aGivenBoard.Fire(new Coordinates(x: 3, y: 3));
+            aGivenBoard.Fire(new Coordinates(x: 4, y: 3));
+
+            printer.Print(aGivenBoard.Cells);
+
+            gamePrinter.Received(1).Print("3|   |   | X | X | X |   |   |   |   |   |");
+        }
 
         [TestCaseSource(nameof(TestCasesForEmptyBoards))]
         public void print_empty_board((IBoard aGivenBoard, List<string> expectedOutput) emptyBoardData)

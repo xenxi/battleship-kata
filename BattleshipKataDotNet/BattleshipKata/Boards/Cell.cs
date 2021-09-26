@@ -4,51 +4,56 @@ namespace BattleshipKata.Boards
 {
     public class Cell : ICell
     {
+        private bool fired;
+
         public Cell(Ship ship)
         {
             Ship = ship;
 
-            if (ship.Type == ShipType.NullShip)
-            {
-                Status = CellStatus.Water;
-            }
-            else if (ship.Type == ShipType.Carrier)
-            {
-                Status = CellStatus.Carrier;
-            }
-            else if (ship.Type == ShipType.GunShip)
-            {
-                Status = CellStatus.GunShip;
-            }
-            else
-            {
-                Status = CellStatus.Destoyer;
-            }
+            fired = false;
         }
 
         public Ship Ship { get; }
 
-        public CellStatus Status { get; private set; }
-
+        public CellStatus Status => CalculeStatus();
         public static Cell Empty() => new Cell(Ship.Empty());
 
         public void Fire()
         {
-            if (Ship.Shot())
+            Ship.Shot();
+            fired = true;
+        }
+
+        private CellStatus CalculeStatus()
+        {
+            switch (Ship.State)
             {
-                if (Ship.State == ShipStatus.Sunken)
-                {
-                    Status = CellStatus.Sunk;
-                }
-                else
-                {
-                    Status = CellStatus.Hit;
-                }
+                case ShipStatus.NotTouched:
+                    {
+                        switch (Ship.Type)
+                        {
+                            case ShipType.NullShip:
+                                return CellStatus.Water;
+
+                            case ShipType.Carrier:
+                                return CellStatus.Carrier;
+
+                            case ShipType.Destroyer:
+                                return CellStatus.Destoyer;
+
+                            case ShipType.GunShip:
+                                return CellStatus.GunShip;
+                        }
+                        break;
+                    }
+                case ShipStatus.Touched:
+                    return CellStatus.Hit;
+
+                case ShipStatus.Sunken:
+                    return CellStatus.Sunk;
             }
-            else
-            {
-                Status = CellStatus.Failed;
-            }
+
+            return CellStatus.Water;
         }
     }
 }
