@@ -18,7 +18,7 @@ namespace BattleshipKata.Boards
 
         public void Fire()
         {
-            Status = Ship.Fire()
+            Status = Ship.Shot()
                 ? CellStatus.Hit
                 : CellStatus.Failed;
         }

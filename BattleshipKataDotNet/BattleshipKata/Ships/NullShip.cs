@@ -11,6 +11,6 @@ namespace BattleshipKata.Ships
 
         public override ShipType Type => throw new NotImplementedException();
 
-        public override bool Fire() => false;
+        public override bool Shot() => false;
     }
 }

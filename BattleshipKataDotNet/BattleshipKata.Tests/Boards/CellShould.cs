@@ -50,7 +50,7 @@ namespace BattleshipKata.Tests.Boards
             var aGivenDestoyer = DestroyerMother.Random();
             var cell = new Cell(aGivenDestoyer);
             for (int i = 0; i < aGivenDestoyer.Coordinates.Count - 1; i++)
-                aGivenDestoyer.Fire();
+                aGivenDestoyer.Shot();
             return cell;
         }
     }

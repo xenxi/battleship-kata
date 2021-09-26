@@ -20,7 +20,7 @@ namespace BattleshipKata.Ships
 
         public static Ship Empty() => new NullShip();
 
-        public virtual bool Fire()
+        public virtual bool Shot()
         {
             Lives--;
             return true;

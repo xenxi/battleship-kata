@@ -23,7 +23,7 @@ namespace BattleshipKata.Tests.Ships
             int aGivenLength = 10;
             var ship = new ShipFake(Orientation.Horizontal, aGivenLength, CoordinatesMother.Random());
 
-            ship.Fire();
+            ship.Shot();
             
             int expectedLives = aGivenLength - 1;
             ship.Lives.Should().Be(expectedLives);
