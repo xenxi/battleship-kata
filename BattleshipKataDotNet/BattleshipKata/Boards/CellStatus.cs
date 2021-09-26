@@ -7,6 +7,7 @@
         Destoyer,
         Hit,
         Sunk,
-        Carrier
+        Carrier,
+        GunShip
     }
 }

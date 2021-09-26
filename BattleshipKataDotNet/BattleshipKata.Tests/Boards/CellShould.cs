@@ -31,6 +31,7 @@ namespace BattleshipKata.Tests.Boards
         public void has_destroyer_status_when_has_a_destructor()
         {
             var aGivenDestoyer = ShipMother.Random(type: ShipType.Destroyer);
+
             var cell = new Cell(aGivenDestoyer);
 
             cell.Status.Should().Be(CellStatus.Destoyer);
@@ -39,9 +40,20 @@ namespace BattleshipKata.Tests.Boards
         public void has_carrier_status_when_has_a_carrier()
         {
             var aGivenDestoyer = ShipMother.Random(type: ShipType.Carrier);
+
             var cell = new Cell(aGivenDestoyer);
 
             cell.Status.Should().Be(CellStatus.Carrier);
+        }
+
+        [Test]
+        public void has_carrier_status_when_has_a_gun_ship()
+        {
+            var aGivenDestoyer = ShipMother.Random(type: ShipType.GunShip);
+
+            var cell = new Cell(aGivenDestoyer);
+
+            cell.Status.Should().Be(CellStatus.GunShip);
         }
 
         [Test]

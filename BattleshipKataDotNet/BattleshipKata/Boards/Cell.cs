@@ -16,6 +16,10 @@ namespace BattleshipKata.Boards
             {
                 Status = CellStatus.Carrier;
             }
+            else if (ship.Type == ShipType.GunShip)
+            {
+                Status = CellStatus.GunShip;
+            }
             else
             {
                 Status = CellStatus.Destoyer;
