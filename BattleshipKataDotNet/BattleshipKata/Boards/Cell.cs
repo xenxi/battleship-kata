@@ -14,6 +14,7 @@ namespace BattleshipKata.Boards
 
         public void Fire()
         {
+            Status = CellStatus.Failed;
         }
 
         public static Cell WaterCell() => new Cell(null);

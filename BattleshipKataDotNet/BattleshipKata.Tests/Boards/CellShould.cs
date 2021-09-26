@@ -14,5 +14,15 @@ namespace BattleshipKata.Tests.Boards
 
             cell.Status.Should().Be(CellStatus.Water);
         }
+
+        [Test]
+        public void has_failed_status_when_shoots_and_has_no_ship()
+        {
+            var cell = Cell.WaterCell();
+
+            cell.Fire();
+
+            cell.Status.Should().Be(CellStatus.Failed);
+        }
     }
 }
