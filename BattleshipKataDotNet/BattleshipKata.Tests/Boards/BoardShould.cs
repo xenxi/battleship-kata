@@ -25,6 +25,11 @@ namespace BattleshipKata.Tests.Boards {
             board.Width.Should().Be(WIDTH);
             board.Height.Should().Be(HEIGHT);
         }
+        [Test]
+        public void create_new_board_with_correct_number_of_cells()
+        {
+            board.Length.Should().Be(WIDTH * HEIGHT);
+        }
 
         [Test]
         public void place_a_destroyer() {
