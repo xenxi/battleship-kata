@@ -9,16 +9,24 @@ namespace BattleshipKata.Tests.Printers
     [TestFixture]
     public class BoardPrinterShould
     {
+        private IGamePrinter gamePrinter;
+        private BoardPrinter printer;
+
         [Test]
         public void print_header()
         {
-            var gamePrinter = Substitute.For<IGamePrinter>();
             var aGivenBoard = BoardMother.Random(size: SizeMother.Random(width: 10));
-            var printer = new BoardPrinter(gamePrinter);
 
             printer.Print(aGivenBoard.Cells);
 
             gamePrinter.Received(1).Print(" | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |");
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            gamePrinter = Substitute.For<IGamePrinter>();
+            printer = new BoardPrinter(gamePrinter);
         }
     }
 }
