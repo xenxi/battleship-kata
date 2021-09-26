@@ -1,4 +1,5 @@
 ﻿using BattleshipKata.Boards;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BattleshipKata.Printers
@@ -18,15 +19,19 @@ namespace BattleshipKata.Printers
 
             printer.Print($" | {string.Join(" | ", columnNumbers)} |");
 
-            printer.Print("0|   |   |   |   |   |   |   |   |   |   |");
-            printer.Print("1|   |   |   |   |   |   |   |   |   |   |");
-            printer.Print("2|   |   |   |   |   |   |   |   |   |   |");
-            printer.Print("3|   |   |   |   |   |   |   |   |   |   |");
-            printer.Print("4|   |   |   |   |   |   |   |   |   |   |");
-            printer.Print("5|   |   |   |   |   |   |   |   |   |   |");
-            printer.Print("6|   |   |   |   |   |   |   |   |   |   |");
-            printer.Print("7|   |   |   |   |   |   |   |   |   |   |");
-            printer.Print("8|   |   |   |   |   |   |   |   |   |   |");
+            for (int row = 0; row < cells.GetLength(1); row++)
+            {
+                var rowData = new List<string>();
+
+                for (int col = 0; col < cells.GetLength(0); col++)
+                {
+                    rowData.Add(" ");
+                }
+
+                var rowString = $"{row}| {string.Join(" | ", rowData)} |";
+
+                printer.Print(rowString);
+            }
         }
     }
 }

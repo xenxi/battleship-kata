@@ -4,7 +4,6 @@ using BattleshipKata.Tests.Boards;
 using BattleshipKata.Tests.ValueObjects;
 using NSubstitute;
 using NUnit.Framework;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace BattleshipKata.Tests.Printers
@@ -33,6 +32,7 @@ namespace BattleshipKata.Tests.Printers
 
             gamePrinter.Received(1).Print(expectedHeader);
         }
+
         [SetUp]
         public void SetUp()
         {
