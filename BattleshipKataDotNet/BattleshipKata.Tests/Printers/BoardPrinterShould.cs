@@ -33,7 +33,17 @@ namespace BattleshipKata.Tests.Printers
                 gamePrinter.Print("7|   |   |   |   |   |   |   |   | c |   |");
             });
         }
+        [Test]
+        public void print_gun_ship()
+        {
+            var aGivenBoard = BoardMother.Random(size: SizeMother.Random(width: 10, height: 10));
+            var aGivenDestroyer = new GunShip(new Coordinates(x: 1, y: 1));
+            aGivenBoard.PlaceShip(aGivenDestroyer);
 
+            printer.Print(aGivenBoard.Cells);
+
+            gamePrinter.Received(1).Print("1|   | g |   |   |   |   |   |   |   |   |");
+        }
         [Test]
         public void print_destroyer()
         {
