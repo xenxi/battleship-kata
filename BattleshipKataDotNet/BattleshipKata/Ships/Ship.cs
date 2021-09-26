@@ -20,7 +20,11 @@ namespace BattleshipKata.Ships
 
         public static Ship Empty() => new NullShip();
 
-        public virtual bool Fire() => true;
+        public virtual bool Fire()
+        {
+            Lives--;
+            return true;
+        }
 
         private static IList<Coordinates> CalculeCoordinates(Coordinates start, int length, Orientation orientation)
         {

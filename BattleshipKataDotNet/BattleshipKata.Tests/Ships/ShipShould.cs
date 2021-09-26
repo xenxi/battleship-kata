@@ -16,5 +16,17 @@ namespace BattleshipKata.Tests.Ships
 
             ship.Lives.Should().Be(aGivenLength);
         }
+
+        [Test]
+        public void lose_a_life_when_shot()
+        {
+            int aGivenLength = 10;
+            var ship = new ShipFake(Orientation.Horizontal, aGivenLength, CoordinatesMother.Random());
+
+            ship.Fire();
+            
+            int expectedLives = aGivenLength - 1;
+            ship.Lives.Should().Be(expectedLives);
+        }
     }
 }
