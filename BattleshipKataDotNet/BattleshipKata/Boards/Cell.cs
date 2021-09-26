@@ -1,4 +1,5 @@
 ﻿using BattleshipKata.Ships;
+using System;
 
 namespace BattleshipKata.Boards
 {
@@ -10,5 +11,10 @@ namespace BattleshipKata.Boards
         }
 
         public Ship Ship { get; }
+        public CellStatus Status { get; private set; }
+
+        public void Fire()
+        {
+        }
     }
 }
