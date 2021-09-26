@@ -1,5 +1,4 @@
 ﻿using BattleshipKata.ValueObjects;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,16 +9,18 @@ namespace BattleshipKata.Ships
         protected Ship(Orientation orientation, int lenght, Coordinates position)
         {
             Coordinates = CalculeCoordinates(position, lenght, orientation);
+            Lives = Coordinates.Count;
         }
 
         public IList<Coordinates> Coordinates { get; }
+        public int Lives { get; private set; }
+        public Coordinates Position => Coordinates.First();
+
+        public abstract ShipType Type { get; }
 
         public static Ship Empty() => new NullShip();
 
-        public abstract bool Fire();
-
-        public Coordinates Position => Coordinates.First();
-        public abstract ShipType Type { get; }
+        public virtual bool Fire() => true;
 
         private static IList<Coordinates> CalculeCoordinates(Coordinates start, int length, Orientation orientation)
         {
