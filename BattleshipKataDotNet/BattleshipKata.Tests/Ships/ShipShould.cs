@@ -3,6 +3,7 @@ using BattleshipKata.Tests.ValueObjects;
 using BattleshipKata.ValueObjects;
 using FluentAssertions;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace BattleshipKata.Tests.Ships
 {
@@ -33,6 +34,18 @@ namespace BattleshipKata.Tests.Ships
             var aGivenShip = AGivenShip(aGivenLength);
 
             aGivenShip.Coordinates.Count.Should().Be(aGivenLength);
+        }
+        [TestCase()]
+        public void has_correct_coordinates_when_created_horizontally()
+        {
+            var aGivenShip = new ShipFake(Orientation.Horizontal, 3, new Coordinates(1,1));
+
+            List<Coordinates> expectedCoordinates = new List<Coordinates> {
+                new Coordinates(1,1),
+                new Coordinates(2,1),
+                new Coordinates(3,1),
+            };
+            aGivenShip.Coordinates.Should().ContainInOrder(expectedCoordinates);
         }
 
         [Test]
@@ -67,7 +80,7 @@ namespace BattleshipKata.Tests.Ships
         }
 
 
-        private static ShipFake AGivenShip(int aGivenLength = 10) => new ShipFake(Orientation.Horizontal, aGivenLength, CoordinatesMother.Random());
+        private static Ship AGivenShip(int aGivenLength = 10) => new ShipFake(Orientation.Horizontal, aGivenLength, CoordinatesMother.Random());
 
         private Ship AGivenShipWithOneLive() => AGivenShip(1);
     }
