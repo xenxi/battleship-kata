@@ -17,6 +17,16 @@ namespace BattleshipKata.Printers
             var columnNumbers = Enumerable.Range(0, cells.GetLength(0));
 
             printer.Print($" | {string.Join(" | ", columnNumbers)} |");
+
+            printer.Print("0|   |   |   |   |   |   |   |   |   |   |");
+            printer.Print("1|   |   |   |   |   |   |   |   |   |   |");
+            printer.Print("2|   |   |   |   |   |   |   |   |   |   |");
+            printer.Print("3|   |   |   |   |   |   |   |   |   |   |");
+            printer.Print("4|   |   |   |   |   |   |   |   |   |   |");
+            printer.Print("5|   |   |   |   |   |   |   |   |   |   |");
+            printer.Print("6|   |   |   |   |   |   |   |   |   |   |");
+            printer.Print("7|   |   |   |   |   |   |   |   |   |   |");
+            printer.Print("8|   |   |   |   |   |   |   |   |   |   |");
         }
     }
 }
