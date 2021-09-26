@@ -29,8 +29,8 @@ namespace BattleshipKata.Tests.Ships
 
             List<Coordinates> expectedCoordinates = new List<Coordinates> {
                 new Coordinates(1, 3),
-                new Coordinates(1, 2),
-                new Coordinates(1, 1),
+                new Coordinates(1, 4),
+                new Coordinates(1, 5),
             };
             aGivenShip.Coordinates.Should().ContainInOrder(expectedCoordinates);
         }
