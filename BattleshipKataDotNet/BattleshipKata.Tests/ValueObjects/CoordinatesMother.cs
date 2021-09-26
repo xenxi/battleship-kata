@@ -1,4 +1,4 @@
-﻿using BattleshipKata.Tests.Ships;
+﻿using BattleshipKata.Tests.Shared;
 using BattleshipKata.ValueObjects;
 
 namespace BattleshipKata.Tests.ValueObjects

@@ -1,6 +1,6 @@
 ﻿using Bogus;
 
-namespace BattleshipKata.Tests.Ships
+namespace BattleshipKata.Tests.Shared
 {
     public static class MotherCreator
     {

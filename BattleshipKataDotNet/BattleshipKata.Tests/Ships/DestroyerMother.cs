@@ -1,4 +1,5 @@
 ﻿using BattleshipKata.Ships;
+using BattleshipKata.Tests.Shared;
 using BattleshipKata.Tests.ValueObjects;
 using BattleshipKata.ValueObjects;
 using System.Collections.Generic;
