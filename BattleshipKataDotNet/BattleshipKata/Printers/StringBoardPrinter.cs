@@ -2,11 +2,11 @@
 
 namespace BattleshipKata.Printers
 {
-    public class BoardPrinter : IBoardPrinter
+    public class StringBoardPrinter : IBoardPrinter
     {
         private readonly IGamePrinter gamePrinter;
 
-        public BoardPrinter(IGamePrinter gamePrinter)
+        public StringBoardPrinter(IGamePrinter gamePrinter)
         {
             this.gamePrinter = gamePrinter;
         }

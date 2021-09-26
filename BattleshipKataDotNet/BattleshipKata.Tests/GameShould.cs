@@ -1,11 +1,9 @@
 ﻿using BattleshipKata.Boards;
 using BattleshipKata.Printers;
-using BattleshipKata.Ships;
 using BattleshipKata.Tests.Ships;
 using BattleshipKata.ValueObjects;
 using NSubstitute;
 using NUnit.Framework;
-using System.Collections.Generic;
 
 namespace BattleshipKata.Tests
 {

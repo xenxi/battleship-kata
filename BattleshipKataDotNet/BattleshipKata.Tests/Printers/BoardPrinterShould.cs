@@ -10,7 +10,7 @@ namespace BattleshipKata.Tests.Printers
     public class BoardPrinterShould
     {
         private IGamePrinter gamePrinter;
-        private BoardPrinter printer;
+        private StringBoardPrinter printer;
 
         [Test]
         public void print_header()
@@ -26,7 +26,7 @@ namespace BattleshipKata.Tests.Printers
         public void SetUp()
         {
             gamePrinter = Substitute.For<IGamePrinter>();
-            printer = new BoardPrinter(gamePrinter);
+            printer = new StringBoardPrinter(gamePrinter);
         }
     }
 }
