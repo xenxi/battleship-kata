@@ -27,9 +27,10 @@ namespace BattleshipKata.Boards
 
         public Cell CellAt(Coordinates coordinate) => cells[coordinate.X, coordinate.Y];
 
-        public void Fire(Coordinates expectedCoordinates)
+        public void Fire(Coordinates coordinates)
         {
-            throw new NotImplementedException();
+            var cell = CellAt(coordinates);
+            cell.Fire();
         }
 
         public void PlaceShip(Ship ship)

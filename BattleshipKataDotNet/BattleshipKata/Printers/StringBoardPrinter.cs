@@ -46,6 +46,7 @@ namespace BattleshipKata.Printers
                 CellStatus.Destoyer => "d",
                 CellStatus.Carrier => "c",
                 CellStatus.GunShip => "g",
+                CellStatus.Hit => "x",
                 _ => string.Empty,
             };
         }
