@@ -26,6 +26,15 @@ namespace BattleshipKata.Tests.Ships
             aGivenShip.Lives.Should().Be(aGivenLength);
         }
 
+        [TestCase(10)]
+        [TestCase(4)]
+        public void has_same_number_of_coordinates_as_length(int aGivenLength) {
+
+            var aGivenShip = AGivenShip(aGivenLength);
+
+            aGivenShip.Coordinates.Count.Should().Be(aGivenLength);
+        }
+
         [Test]
         public void has_sunken_status_when_shot_and_has_no_lives_left()
         {
@@ -56,6 +65,7 @@ namespace BattleshipKata.Tests.Ships
             int expectedLives = aGivenLength - 1;
             aGivenShip.Lives.Should().Be(expectedLives);
         }
+
 
         private static ShipFake AGivenShip(int aGivenLength = 10) => new ShipFake(Orientation.Horizontal, aGivenLength, CoordinatesMother.Random());
 
