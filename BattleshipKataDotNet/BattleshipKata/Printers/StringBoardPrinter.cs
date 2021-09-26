@@ -1,4 +1,5 @@
 ﻿using BattleshipKata.Boards;
+using System.Linq;
 
 namespace BattleshipKata.Printers
 {
@@ -13,7 +14,9 @@ namespace BattleshipKata.Printers
 
         public void Print(ICell[,] cells)
         {
-            printer.Print(" | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |");
+            var columnNumbers = Enumerable.Range(0, cells.GetLength(0));
+
+            printer.Print($" | {string.Join(" | ", columnNumbers)} |");
         }
     }
 }

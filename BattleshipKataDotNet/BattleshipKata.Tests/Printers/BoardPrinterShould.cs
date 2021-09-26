@@ -12,16 +12,17 @@ namespace BattleshipKata.Tests.Printers
         private IStringPrinter gamePrinter;
         private StringBoardPrinter printer;
 
-        [Test]
-        public void print_header()
+        [TestCase(10, " | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |")]
+        [TestCase(5, " | 0 | 1 | 2 | 3 | 4 |")]
+        public void print_header(int aGivenWidth, string expectedHeader)
         {
-            var aGivenBoard = BoardMother.Random(size: SizeMother.Random(width: 10));
+            var aGivenBoard = BoardMother.Random(size: SizeMother.Random(width: aGivenWidth));
 
             printer.Print(aGivenBoard.Cells);
 
-            gamePrinter.Received(1).Print(" | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |");
+            gamePrinter.Received(1).Print(expectedHeader);
         }
-
+       
         [SetUp]
         public void SetUp()
         {
