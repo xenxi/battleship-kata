@@ -12,7 +12,7 @@ namespace BattleshipKata.Tests.Ships
         [TestCase(45)]
         public void has_same_number_of_lives_as_length(int aGivenLength)
         {
-            var ship = new ShipFake(Orientation.Horizontal, aGivenLength, CoordinatesMother.Random());
+            var ship = AGivenShipWith(aGivenLength);
 
             ship.Lives.Should().Be(aGivenLength);
         }
@@ -21,12 +21,14 @@ namespace BattleshipKata.Tests.Ships
         public void lose_a_life_when_shot()
         {
             int aGivenLength = 10;
-            var ship = new ShipFake(Orientation.Horizontal, aGivenLength, CoordinatesMother.Random());
+            var ship = AGivenShipWith(aGivenLength);
 
             ship.Shot();
-            
+
             int expectedLives = aGivenLength - 1;
             ship.Lives.Should().Be(expectedLives);
         }
+
+        private static ShipFake AGivenShipWith(int aGivenLength) => new ShipFake(Orientation.Horizontal, aGivenLength, CoordinatesMother.Random());
     }
 }
