@@ -27,9 +27,9 @@ namespace BattleshipKata
             printer.Print(board.Cells);
         }
 
-        public void Start(IList<Ship> aGivenFleet)
+        public void Start(IList<Ship> fleet)
         {
-            foreach (var ship in aGivenFleet)
+            foreach (var ship in fleet)
             {
                 board.PlaceShip(ship);
             }

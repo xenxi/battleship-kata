@@ -51,8 +51,8 @@ namespace BattleshipKata.Tests.Boards
         }
         [TestCase(WIDTH - 1, HEIGHT, 3, Orientation.Horizontal)]
         [TestCase(WIDTH, HEIGHT, 3, Orientation.Horizontal)]
-        [TestCase(0, 0, 3, Orientation.Vertical)]
-        [TestCase(0, 1, 3, Orientation.Vertical)]
+        [TestCase(0, 9, 3, Orientation.Vertical)]
+        [TestCase(0, 7, 3, Orientation.Vertical)]
         public void throw_invalid_coordinates_exception_when_not_all_the_squares_of_a_ship_hit_on_the_board(int x, int y, int lenght, Orientation orientation)
         {
             var aGivenShip = ShipMother.Random(position: CoordinatesMother.Create(x, y), orientation: orientation, lenght: lenght);
