@@ -18,9 +18,21 @@ namespace BattleshipKata.Boards
 
         public void Fire()
         {
-            Status = Ship.Shot()
-                ? CellStatus.Hit
-                : CellStatus.Failed;
+            if (Ship.Shot())
+            {
+                if (Ship.State == ShipStatus.Sunken)
+                {
+                    Status = CellStatus.Sunk;
+                }
+                else
+                {
+                    Status = CellStatus.Hit;
+                }
+            }
+            else
+            {
+                Status = CellStatus.Failed;
+            }
         }
     }
 }
