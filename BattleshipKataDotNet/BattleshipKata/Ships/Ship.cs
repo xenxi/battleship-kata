@@ -35,7 +35,7 @@ namespace BattleshipKata.Ships
             for (int i = 0; i < length; i++)
             {
                 if (orientation == Orientation.Vertical)
-                    coordinates.Add(new Coordinates(x: start.X, y: start.Y - i));
+                    coordinates.Add(new Coordinates(x: start.X, y: start.Y + i));
                 else
                     coordinates.Add(new Coordinates(x: start.X + i, y: start.Y));
             }

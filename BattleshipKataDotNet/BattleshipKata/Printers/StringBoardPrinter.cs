@@ -44,6 +44,7 @@ namespace BattleshipKata.Printers
             {
                 CellStatus.Water => " ",
                 CellStatus.Destoyer => "d",
+                CellStatus.Carrier => "c",
                 _ => string.Empty,
             };
         }

@@ -2,7 +2,6 @@
 using BattleshipKata.Printers;
 using BattleshipKata.Ships;
 using BattleshipKata.Tests.Boards;
-using BattleshipKata.Tests.Ships;
 using BattleshipKata.Tests.ValueObjects;
 using BattleshipKata.ValueObjects;
 using NSubstitute;
@@ -16,6 +15,36 @@ namespace BattleshipKata.Tests.Printers
     {
         private IStringPrinter gamePrinter;
         private StringBoardPrinter printer;
+
+        [Test]
+        public void print_carrier()
+        {
+            var aGivenBoard = BoardMother.Random(size: SizeMother.Random(width: 10, height: 10));
+            var aGivenDestroyer = new Carrier(Orientation.Vertical, new Coordinates(x: 8, y: 4));
+            aGivenBoard.PlaceShip(aGivenDestroyer);
+
+            printer.Print(aGivenBoard.Cells);
+
+            Received.InOrder(() =>
+            {
+                gamePrinter.Print("4|   |   |   |   |   |   |   |   | c |   |");
+                gamePrinter.Print("5|   |   |   |   |   |   |   |   | c |   |");
+                gamePrinter.Print("6|   |   |   |   |   |   |   |   | c |   |");
+                gamePrinter.Print("7|   |   |   |   |   |   |   |   | c |   |");
+            });
+        }
+
+        [Test]
+        public void print_destroyer()
+        {
+            var aGivenBoard = BoardMother.Random(size: SizeMother.Random(width: 10, height: 5));
+            var aGivenDestroyer = new Destroyer(Orientation.Horizontal, new Coordinates(x: 2, y: 3));
+            aGivenBoard.PlaceShip(aGivenDestroyer);
+
+            printer.Print(aGivenBoard.Cells);
+
+            gamePrinter.Received(1).Print("3|   |   | d | d | d |   |   |   |   |   |");
+        }
 
         [TestCaseSource(nameof(TestCasesForEmptyBoards))]
         public void print_empty_board((IBoard aGivenBoard, List<string> expectedOutput) emptyBoardData)
@@ -35,19 +64,6 @@ namespace BattleshipKata.Tests.Printers
 
             gamePrinter.Received(1).Print(expectedHeader);
         }
-
-        [Test]
-        public void print_destroyer()
-        {
-            var aGivenBoard = BoardMother.Random(size: SizeMother.Random(width: 10, height: 10));
-            var aGivenDestroyer = new Destroyer(Orientation.Horizontal, new Coordinates(x: 2, y: 3));
-            aGivenBoard.PlaceShip(aGivenDestroyer);
-
-            printer.Print(aGivenBoard.Cells);
-
-            gamePrinter.Received(1).Print("3|   |   | d | d | d |   |   |   |   |   |");
-        }
-
         [SetUp]
         public void SetUp()
         {
