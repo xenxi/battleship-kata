@@ -1,5 +1,4 @@
-﻿using System;
-using BattleshipKata.Boards;
+﻿using BattleshipKata.Boards;
 using BattleshipKata.Exceptions;
 using BattleshipKata.Ships;
 using BattleshipKata.Tests.Ships;
@@ -7,24 +6,19 @@ using BattleshipKata.Tests.ValueObjects;
 using BattleshipKata.ValueObjects;
 using FluentAssertions;
 using NUnit.Framework;
+using System;
 
-namespace BattleshipKata.Tests.Boards {
+namespace BattleshipKata.Tests.Boards
+{
     [TestFixture]
-    public class BoardShould {
-        [SetUp]
-        public void SetUp() {
-            board = Board.From(WIDTH, HEIGHT);
-        }
-
-        private Board board;
-        private const int WIDTH = 10;
+    public class BoardShould
+    {
         private const int HEIGHT = 15;
 
-        [Test]
-        public void create_new_board_with_correct_size() {
-            board.Width.Should().Be(WIDTH);
-            board.Height.Should().Be(HEIGHT);
-        }
+        private const int WIDTH = 10;
+
+        private Board board;
+
         [Test]
         public void create_new_board_with_correct_number_of_cells()
         {
@@ -32,7 +26,15 @@ namespace BattleshipKata.Tests.Boards {
         }
 
         [Test]
-        public void place_a_destroyer() {
+        public void create_new_board_with_correct_size()
+        {
+            board.Width.Should().Be(WIDTH);
+            board.Height.Should().Be(HEIGHT);
+        }
+
+        [Test]
+        public void place_a_destroyer()
+        {
             var aGivenInitialCoordinates = new Coordinates(0, 0);
             var aGivenDestroyer = new Destroyer(Orientation.Horizontal, aGivenInitialCoordinates);
 
@@ -42,22 +44,29 @@ namespace BattleshipKata.Tests.Boards {
                 board.CellAt(coordinate).Ship.Should().Be(aGivenDestroyer);
         }
 
-        [Test]
-        public void throw_invalid_coordinates_exception_when_place_ship_outside_board() {
-            var aGivenOutSideBoardCoordinates = CoordinatesMother.CreateOutside(board.Size);
-            var aGivenShip = DestroyerMother.Random(coordinates: aGivenOutSideBoardCoordinates);
+        [SetUp]
+        public void SetUp()
+        {
+            board = Board.From(WIDTH, HEIGHT);
+        }
+        [TestCase(WIDTH - 1, HEIGHT, 3, Orientation.Horizontal)]
+        [TestCase(WIDTH, HEIGHT, 3, Orientation.Horizontal)]
+        [TestCase(0, 0, 3, Orientation.Vertical)]
+        [TestCase(0, 1, 3, Orientation.Vertical)]
+        public void throw_invalid_coordinates_exception_when_not_all_the_squares_of_a_ship_hit_on_the_board(int x, int y, int lenght, Orientation orientation)
+        {
+            var aGivenShip = ShipMother.Random(position: CoordinatesMother.Create(x, y), orientation: orientation, lenght: lenght);
 
             Action action = () => board.PlaceShip(aGivenShip);
 
             action.Should().Throw<InvalidCoordinates>();
         }
 
-        [TestCase(WIDTH - 1, HEIGHT, Orientation.Horizontal)]
-        [TestCase(WIDTH, HEIGHT, Orientation.Horizontal)]
-        [TestCase(0, 0, Orientation.Vertical)]
-        [TestCase(0, 1, Orientation.Vertical)]
-        public void throw_invalid_coordinates_exception_when_not_all_the_squares_of_a_ship_hit_on_the_board(int x, int y, Orientation orientation) {
-            var aGivenShip = DestroyerMother.Create(coordinates: CoordinatesMother.Create(x, y), orientation);
+        [Test]
+        public void throw_invalid_coordinates_exception_when_place_ship_outside_board()
+        {
+            var aGivenOutSideBoardCoordinates = CoordinatesMother.CreateOutside(board.Size);
+            var aGivenShip = ShipMother.Random(position: aGivenOutSideBoardCoordinates);
 
             Action action = () => board.PlaceShip(aGivenShip);
 

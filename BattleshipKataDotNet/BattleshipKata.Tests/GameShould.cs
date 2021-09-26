@@ -48,7 +48,7 @@ namespace BattleshipKata.Tests
         [Test]
         public void start_a_game_with_fleet_of_ships()
         {
-            var aGivenFleet = DestroyerMother.Randoms();
+            var aGivenFleet = ShipMother.Randoms();
 
             game.Start(aGivenFleet);
 

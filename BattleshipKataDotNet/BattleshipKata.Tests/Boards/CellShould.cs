@@ -29,7 +29,7 @@ namespace BattleshipKata.Tests.Boards
         [Test]
         public void has_destroyer_status_when_has_a_destructor()
         {
-            var aGivenDestoyer = DestroyerMother.Random();
+            var aGivenDestoyer = ShipMother.Random();
             var cell = new Cell(aGivenDestoyer);
 
             cell.Status.Should().Be(CellStatus.Destoyer);
@@ -47,7 +47,7 @@ namespace BattleshipKata.Tests.Boards
 
         private static Cell AGivenCellWithShipWithOneLife()
         {
-            var aGivenDestoyer = DestroyerMother.Random();
+            var aGivenDestoyer = ShipMother.Random();
             var cell = new Cell(aGivenDestoyer);
             for (int i = 0; i < aGivenDestoyer.Coordinates.Count - 1; i++)
                 aGivenDestoyer.Shot();
