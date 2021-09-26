@@ -1,4 +1,5 @@
 ﻿using BattleshipKata.ValueObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,6 +13,11 @@ namespace BattleshipKata.Ships
         }
 
         public IList<Coordinates> Coordinates { get; }
+
+        public static Ship Empty() => new NullShip();
+
+        public abstract bool Fire();
+
         public Coordinates Position => Coordinates.First();
         public abstract ShipType Type { get; }
 

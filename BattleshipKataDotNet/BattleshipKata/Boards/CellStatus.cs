@@ -4,6 +4,7 @@
     {
         Water,
         Failed,
-        Destoyer
+        Destoyer,
+        Hit
     }
 }

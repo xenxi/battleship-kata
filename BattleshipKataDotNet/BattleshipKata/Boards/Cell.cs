@@ -14,11 +14,13 @@ namespace BattleshipKata.Boards
         public Ship Ship { get; }
         public CellStatus Status { get; private set; }
 
+        public static Cell Empty() => new Cell(Ship.Empty());
+
         public void Fire()
         {
-            Status = CellStatus.Failed;
+            Status = Ship.Fire()
+                ? CellStatus.Hit
+                : CellStatus.Failed;
         }
-
-        public static Cell Empty() => new Cell(null);
     }
 }
