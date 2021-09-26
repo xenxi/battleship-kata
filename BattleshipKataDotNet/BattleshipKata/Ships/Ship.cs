@@ -16,6 +16,7 @@ namespace BattleshipKata.Ships
         public int Lives { get; private set; }
         public Coordinates Position => Coordinates.First();
 
+        public ShipStatus State { get; private set; }
         public abstract ShipType Type { get; }
 
         public static Ship Empty() => new NullShip();
@@ -23,6 +24,8 @@ namespace BattleshipKata.Ships
         public virtual bool Shot()
         {
             Lives--;
+            State = Lives > 0 ? ShipStatus.Touched : ShipStatus.Sunken;
+
             return true;
         }
 

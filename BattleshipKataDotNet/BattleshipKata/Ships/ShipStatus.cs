@@ -2,6 +2,8 @@
 {
     public enum ShipStatus
     {
-        NotTouched
+        NotTouched,
+        Touched,
+        Sunken
     }
 }

@@ -25,6 +25,26 @@ namespace BattleshipKata.Tests.Ships
 
             aGivenShip.Lives.Should().Be(aGivenLength);
         }
+
+        [Test]
+        public void has_sunken_status_when_shot_and_has_no_lives_left()
+        {
+            var aGivenShip = AGivenShipWithOneLive();
+
+            aGivenShip.Shot();
+
+            aGivenShip.State.Should().Be(ShipStatus.Sunken);
+        }
+
+        [Test]
+        public void has_touched_status_when_has_shot()
+        {
+            var aGivenShip = AGivenShip();
+
+            aGivenShip.Shot();
+
+            aGivenShip.State.Should().Be(ShipStatus.Touched);
+        }
         [Test]
         public void lose_a_life_when_shot()
         {
@@ -38,5 +58,7 @@ namespace BattleshipKata.Tests.Ships
         }
 
         private static ShipFake AGivenShip(int aGivenLength = 10) => new ShipFake(Orientation.Horizontal, aGivenLength, CoordinatesMother.Random());
+
+        private Ship AGivenShipWithOneLive() => AGivenShip(1);
     }
 }
