@@ -9,6 +9,6 @@ namespace BattleshipKata.Boards
 
         void PlaceShip(Ship ship);
 
-        void Fire(Coordinates expectedCoordinates);
+        void Fire(Coordinates coordinates);
     }
 }
