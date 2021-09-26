@@ -23,6 +23,12 @@ namespace BattleshipKata.Tests.Ships
             destroyer.Lives.Should().Be(3);
         }
 
+        [Test]
+        public void has_type_destroyer()
+        {
+            destroyer.Type.Should().Be(ShipType.Destroyer);
+        }
+
         [SetUp]
         public void SetUp()
         {
