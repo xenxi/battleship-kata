@@ -88,30 +88,33 @@ namespace BattleshipKata.Tests
         private static void aGivenPlayerShots(Game game)
         {
             game.Fire(x: 2, y: 0);
+
             game.Fire(x: 1, y: 1);
             game.Fire(x: 3, y: 1);
+
             game.Fire(x: 1, y: 2);
             game.Fire(x: 7, y: 2);
+
             game.Fire(x: 2, y: 3);
             game.Fire(x: 3, y: 3);
             game.Fire(x: 4, y: 3);
+
             game.Fire(x: 1, y: 4);
-            game.Fire(x: 6, y: 4);
-            game.Fire(x: 8, y: 4);
+ 
             game.Fire(x: 1, y: 5);
             game.Fire(x: 2, y: 5);
             game.Fire(x: 5, y: 5);
-            game.Fire(x: 8, y: 5);
+
             game.Fire(x: 3, y: 6);
             game.Fire(x: 6, y: 6);
-            game.Fire(x: 8, y: 6);
+   
             game.Fire(x: 1, y: 7);
-            game.Fire(x: 5, y: 7);
             game.Fire(x: 8, y: 7);
+
             game.Fire(x: 2, y: 8);
             game.Fire(x: 3, y: 8);
-            game.Fire(x: 5, y: 8);
             game.Fire(x: 8, y: 8);
+
             game.Fire(x: 4, y: 9);
             game.Fire(x: 5, y: 9);
             game.Fire(x: 6, y: 9);
