@@ -35,7 +35,7 @@ namespace BattleshipKata.Tests.Ships
 
             aGivenShip.Coordinates.Count.Should().Be(aGivenLength);
         }
-        [TestCase()]
+        [Test]
         public void has_correct_coordinates_when_created_horizontally()
         {
             var aGivenShip = new ShipFake(Orientation.Horizontal, 3, new Coordinates(1,1));
@@ -47,7 +47,18 @@ namespace BattleshipKata.Tests.Ships
             };
             aGivenShip.Coordinates.Should().ContainInOrder(expectedCoordinates);
         }
+        [Test]
+        public void has_correct_coordinates_when_created_vertically()
+        {
+            var aGivenShip = new ShipFake(Orientation.Vertical, 3, new Coordinates(1, 3));
 
+            List<Coordinates> expectedCoordinates = new List<Coordinates> {
+                new Coordinates(1, 3),
+                new Coordinates(1, 2),
+                new Coordinates(1, 1),
+            };
+            aGivenShip.Coordinates.Should().ContainInOrder(expectedCoordinates);
+        }
         [Test]
         public void has_sunken_status_when_shot_and_has_no_lives_left()
         {
