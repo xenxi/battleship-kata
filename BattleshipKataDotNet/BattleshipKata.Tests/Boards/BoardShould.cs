@@ -39,8 +39,7 @@ namespace BattleshipKata.Tests.Boards {
             board.PlaceShip(aGivenDestroyer);
 
             foreach (var coordinate in aGivenDestroyer.Coordinates)
-                board.CellsAt(coordinate).Ship.Should().Be(aGivenDestroyer);
-
+                board.CellAt(coordinate).Ship.Should().Be(aGivenDestroyer);
         }
 
         [Test]

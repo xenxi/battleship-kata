@@ -13,7 +13,7 @@ namespace BattleshipKata.Boards
 
         public Board(Size size)
         {
-            cells = GetCells(size);
+            cells = CreateCells(size);
             Size = size;
         }
 
@@ -26,10 +26,7 @@ namespace BattleshipKata.Boards
         public static Board From(int width, int height)
             => new Board(new Size(width: width, height: height));
 
-        public Cell CellsAt(Coordinates coordinate)
-        {
-            return cells[coordinate.X, coordinate.Y];
-        }
+        public Cell CellAt(Coordinates coordinate) => cells[coordinate.X, coordinate.Y];
 
         public void Fire(Coordinates expectedCoordinates)
         {
@@ -45,7 +42,7 @@ namespace BattleshipKata.Boards
                 cells[coordinate.X, coordinate.Y] = new Cell(ship);
         }
 
-        private static Cell[,] GetCells(Size size)
+        private static Cell[,] CreateCells(Size size)
         {
             var grid = new Cell[size.Width, size.Height];
             for (var x = 0; x < size.Width; x++)
@@ -59,14 +56,8 @@ namespace BattleshipKata.Boards
             return grid;
         }
 
-        private bool Contains(IList<Coordinates> coordinates)
-        {
-            return coordinates.All(x => Contains(x));
-        }
+        private bool Contains(IList<Coordinates> coordinates) => coordinates.All(x => Contains(x));
 
-        private bool Contains(Coordinates x)
-        {
-            return !Size.IsOutsideBoard(x);
-        }
+        private bool Contains(Coordinates x) => !Size.IsOutsideBoard(x);
     }
 }
