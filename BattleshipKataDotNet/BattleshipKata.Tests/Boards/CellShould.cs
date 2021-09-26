@@ -12,7 +12,7 @@ namespace BattleshipKata.Tests.Boards
         public void has_water_status_by_default()
         {
             var cell = Cell.Empty();
-
+             
             cell.Status.Should().Be(CellStatus.Water);
         }
 

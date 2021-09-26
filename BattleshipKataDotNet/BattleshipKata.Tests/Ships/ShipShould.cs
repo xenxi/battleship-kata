@@ -1,4 +1,5 @@
-﻿using BattleshipKata.Tests.ValueObjects;
+﻿using BattleshipKata.Ships;
+using BattleshipKata.Tests.ValueObjects;
 using BattleshipKata.ValueObjects;
 using FluentAssertions;
 using NUnit.Framework;
@@ -8,6 +9,14 @@ namespace BattleshipKata.Tests.Ships
     [TestFixture]
     public class ShipShould
     {
+        [Test]
+        public void has_not_touched_status_when_has_not_been_shot()
+        {
+            var aGivenShip = AGivenShip();
+
+            aGivenShip.State.Should().Be(ShipStatus.NotTouched);
+        }
+
         [TestCase(10)]
         [TestCase(45)]
         public void has_same_number_of_lives_as_length(int aGivenLength)
@@ -16,7 +25,6 @@ namespace BattleshipKata.Tests.Ships
 
             aGivenShip.Lives.Should().Be(aGivenLength);
         }
-
         [Test]
         public void lose_a_life_when_shot()
         {

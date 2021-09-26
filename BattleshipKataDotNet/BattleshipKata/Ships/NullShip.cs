@@ -9,7 +9,7 @@ namespace BattleshipKata.Ships
         {
         }
 
-        public override ShipType Type => throw new NotImplementedException();
+        public override ShipType Type => ShipType.NullShip;
 
         public override bool Shot() => false;
     }

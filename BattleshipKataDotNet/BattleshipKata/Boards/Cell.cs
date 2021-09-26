@@ -8,7 +8,7 @@ namespace BattleshipKata.Boards
         {
             Ship = ship;
 
-            Status = ship == null ? CellStatus.Water : CellStatus.Destoyer;
+            Status = ship.Type == ShipType.NullShip ? CellStatus.Water : CellStatus.Destoyer;
         }
 
         public Ship Ship { get; }
