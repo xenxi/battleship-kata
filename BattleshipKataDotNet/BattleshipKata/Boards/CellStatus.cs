@@ -3,6 +3,7 @@
     public enum CellStatus
     {
         Water,
-        Failed
+        Failed,
+        Destoyer
     }
 }

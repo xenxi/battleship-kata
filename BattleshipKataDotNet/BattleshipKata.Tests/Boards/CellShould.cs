@@ -1,4 +1,6 @@
 ﻿using BattleshipKata.Boards;
+using BattleshipKata.Ships;
+using BattleshipKata.Tests.Ships;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -23,6 +25,14 @@ namespace BattleshipKata.Tests.Boards
             cell.Fire();
 
             cell.Status.Should().Be(CellStatus.Failed);
+        }
+        [Test]
+        public void has_destroyer_status_when_has_a_destructor()
+        {
+            var aGivenDestoyer = ShipMother.Random();
+            var cell = new Cell(aGivenDestoyer);
+
+            cell.Status.Should().Be(CellStatus.Destoyer);
         }
     }
 }
