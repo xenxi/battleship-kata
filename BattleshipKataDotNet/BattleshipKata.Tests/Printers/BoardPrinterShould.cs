@@ -68,6 +68,17 @@ namespace BattleshipKata.Tests.Printers
 
             gamePrinter.Received(1).Print("3|   |   | d | x | d |   |   |   |   |   |");
         }
+
+        [Test]
+        public void print_failed_shot()
+        {
+            var aGivenBoard = BoardMother.Random(size: SizeMother.Random(width: 10, height: 5));
+            aGivenBoard.Fire(new Coordinates(x: 3, y: 3));
+
+            printer.Print(aGivenBoard.Cells);
+
+            gamePrinter.Received(1).Print("3|   |   |   | o |   |   |   |   |   |   |");
+        }
         [Test]
         public void print_sunk_ship()
         {
