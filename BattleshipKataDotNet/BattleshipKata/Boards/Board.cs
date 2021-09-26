@@ -17,12 +17,11 @@ namespace BattleshipKata.Boards
             Size = size;
         }
 
+        public ICell[,] Cells => cells;
         public int Height => Size.Height;
+        public int Length => cells.Length;
         public Size Size { get; }
         public int Width => Size.Width;
-
-        public int Length => cells.Length;
-
         public static Board From(int width, int height)
             => new Board(new Size(width: width, height: height));
 

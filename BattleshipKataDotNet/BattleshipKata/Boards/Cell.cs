@@ -2,7 +2,7 @@
 
 namespace BattleshipKata.Boards
 {
-    public class Cell
+    public class Cell : ICell
     {
         public Cell(Ship ship)
         {
@@ -27,6 +27,7 @@ namespace BattleshipKata.Boards
         }
 
         public Ship Ship { get; }
+
         public CellStatus Status { get; private set; }
 
         public static Cell Empty() => new Cell(Ship.Empty());

@@ -33,7 +33,7 @@ namespace BattleshipKata.Tests
         {
             game.Print();
 
-            printer.Received(1).Print(board);
+            printer.Received(1).Print(board.Cells);
         }
 
         [SetUp]

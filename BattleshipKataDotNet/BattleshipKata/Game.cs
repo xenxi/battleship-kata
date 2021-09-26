@@ -24,7 +24,7 @@ namespace BattleshipKata
 
         public void Print()
         {
-            printer.Print(board);
+            printer.Print(board.Cells);
         }
 
         public void Start(IList<Ship> aGivenFleet)
