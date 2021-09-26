@@ -15,23 +15,50 @@ namespace BattleshipKata.Printers
 
         public void Print(ICell[,] cells)
         {
-            var columnNumbers = Enumerable.Range(0, cells.GetLength(0));
+            PrintHeader(cells);
 
-            printer.Print($" | {string.Join(" | ", columnNumbers)} |");
+            PrintRows(cells);
+        }
 
+        private void PrintRows(ICell[,] cells)
+        {
             for (int row = 0; row < cells.GetLength(1); row++)
+                PrintRow(cells, row);
+        }
+
+        private void PrintRow(ICell[,] cells, int row)
+        {
+            var rowData = new List<string>();
+
+            for (int col = 0; col < cells.GetLength(0); col++)
+                rowData.Add(StatusToString(cells[col, row].Status));
+
+            var rowString = $"{row}{formatRowData(rowData)}";
+
+            printer.Print(rowString);
+        }
+
+        private static string StatusToString(CellStatus status)
+        {
+            return status switch
             {
-                var rowData = new List<string>();
+                CellStatus.Water => " ",
+                CellStatus.Destoyer => "d",
+                _ => string.Empty,
+            };
+        }
 
-                for (int col = 0; col < cells.GetLength(0); col++)
-                {
-                    rowData.Add(" ");
-                }
+        private void PrintHeader(ICell[,] cells)
+        {
+            var columnNumbers = Enumerable.Range(0, cells.GetLength(0)).Select(number => number.ToString());
 
-                var rowString = $"{row}| {string.Join(" | ", rowData)} |";
+            string text = $" {formatRowData(columnNumbers)}";
+            printer.Print(text);
+        }
 
-                printer.Print(rowString);
-            }
+        private static string formatRowData(IEnumerable<string> data)
+        {
+            return $"| {string.Join(" | ", data)} |";
         }
     }
 }

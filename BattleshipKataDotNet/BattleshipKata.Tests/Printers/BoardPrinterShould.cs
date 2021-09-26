@@ -1,7 +1,10 @@
 ﻿using BattleshipKata.Boards;
 using BattleshipKata.Printers;
+using BattleshipKata.Ships;
 using BattleshipKata.Tests.Boards;
+using BattleshipKata.Tests.Ships;
 using BattleshipKata.Tests.ValueObjects;
+using BattleshipKata.ValueObjects;
 using NSubstitute;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -31,6 +34,18 @@ namespace BattleshipKata.Tests.Printers
             printer.Print(aGivenBoard.Cells);
 
             gamePrinter.Received(1).Print(expectedHeader);
+        }
+
+        [Test]
+        public void print_destroyer()
+        {
+            var aGivenBoard = BoardMother.Random(size: SizeMother.Random(width: 10, height: 10));
+            var aGivenDestroyer = new Destroyer(Orientation.Horizontal, new Coordinates(x: 2, y: 3));
+            aGivenBoard.PlaceShip(aGivenDestroyer);
+
+            printer.Print(aGivenBoard.Cells);
+
+            gamePrinter.Received(1).Print("3|   |   | d | d | d |   |   |   |   |   |");
         }
 
         [SetUp]
