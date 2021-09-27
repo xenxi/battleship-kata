@@ -14,7 +14,7 @@ namespace BattleshipKata.Tests.Ships
 
         public static Ship Random(Coordinates position = null, Orientation? orientation = null, int? lenght = null, ShipType? type = null) => Create(
             position: position ?? CoordinatesMother.Random(),
-            type: type ?? MotherCreator.Random().Enum<ShipType>(),
+            type: type ?? MotherCreator.Random().Enum<ShipType>(ShipType.NullShip),
             lenght: lenght ?? MotherCreator.Random().Number(min: 1, max: 5),
             orientation: orientation ?? OrientationMother.Random());
 
