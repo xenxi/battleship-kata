@@ -34,15 +34,6 @@ namespace BattleshipKata.Tests
 
             Received.InOrder(() =>
             {
-                gamePrinter.Print("[ Player1");
-                gamePrinter.Print(" Total shots: 23");
-                gamePrinter.Print(" Misses: 15");
-                gamePrinter.Print(" Hits: 8");
-                gamePrinter.Print(" Ships Sunk: [ ");
-                gamePrinter.Print("	Gunship: (1,7),");
-                gamePrinter.Print("	Gunship: (9,9),");
-                gamePrinter.Print("	Gunship: (7, 2),");
-                gamePrinter.Print("	Destroyer (2,3) ]");
                 gamePrinter.Print(" | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |");
                 gamePrinter.Print("0|   |   |   |   |   |   |   |   |   |   |");
                 gamePrinter.Print("1|   |   |   |   |   |   |   |   |   |   |");
@@ -68,6 +59,15 @@ namespace BattleshipKata.Tests
 
             Received.InOrder(() =>
             {
+                gamePrinter.Print("[ Player1");
+                gamePrinter.Print(" Total shots: 23");
+                gamePrinter.Print(" Misses: 15");
+                gamePrinter.Print(" Hits: 8");
+                gamePrinter.Print(" Ships Sunk: [ ");
+                gamePrinter.Print("	Gunship: (1,7),");
+                gamePrinter.Print("	Gunship: (9,9),");
+                gamePrinter.Print("	Gunship: (7, 2),");
+                gamePrinter.Print("	Destroyer (2,3) ]");
                 gamePrinter.Print(" | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |");
                 gamePrinter.Print("0|   |   | o |   |   |   |   |   |   |   |");
                 gamePrinter.Print("1|   | o |   | o |   |   |   |   |   |   |");
