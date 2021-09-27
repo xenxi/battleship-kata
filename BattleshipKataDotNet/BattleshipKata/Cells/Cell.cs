@@ -1,6 +1,7 @@
-﻿using BattleshipKata.Ships;
+﻿using BattleshipKata.Cells.States;
+using BattleshipKata.Ships;
 
-namespace BattleshipKata.Boards
+namespace BattleshipKata.Cells
 {
     public class Cell : ICell
     {

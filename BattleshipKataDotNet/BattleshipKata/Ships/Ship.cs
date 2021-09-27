@@ -11,6 +11,7 @@ namespace BattleshipKata.Ships
         {
             Coordinates = CalculeCoordinates(position, lenght, orientation);
             Lives = Coordinates.Count;
+            State = ShipStatus.NotTouched;
         }
 
         public IList<Coordinates> Coordinates { get; }

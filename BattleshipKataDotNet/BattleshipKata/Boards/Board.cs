@@ -1,4 +1,5 @@
-﻿using BattleshipKata.Exceptions;
+﻿using BattleshipKata.Cells;
+using BattleshipKata.Exceptions;
 using BattleshipKata.Ships;
 using BattleshipKata.ValueObjects;
 using System.Collections.Generic;

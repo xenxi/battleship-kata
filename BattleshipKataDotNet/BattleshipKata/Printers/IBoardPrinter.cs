@@ -1,4 +1,4 @@
-﻿using BattleshipKata.Boards;
+﻿using BattleshipKata.Cells;
 
 namespace BattleshipKata.Printers
 {

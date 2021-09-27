@@ -1,4 +1,4 @@
-﻿namespace BattleshipKata.Boards
+﻿namespace BattleshipKata.Cells.States
 {
     public enum CellStatus
     {
