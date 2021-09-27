@@ -18,9 +18,10 @@ namespace BattleshipKata.Cells
             Ship = new NullShip();
             state = new WaterCell(this);
         }
+
         public Ship Ship { get; }
 
-        public CellStatus Status => CalculeStatus();
+        public CellStatus Status => state.GetState();
 
         public static Cell Empty() => new Cell();
 
@@ -30,13 +31,5 @@ namespace BattleshipKata.Cells
         }
 
         internal void UpdateState(CellState newState) => state = newState;
-
-        private CellStatus CalculeStatus()
-        {
-            if (Ship.IsSunk())
-                return CellStatus.Sunk;
-
-            return state.GetState();
-        }
     }
 }

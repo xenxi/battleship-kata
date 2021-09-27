@@ -16,10 +16,7 @@ namespace BattleshipKata.Cells.States
         {
             ship.Shot();
 
-            if (ship.IsSunk())
-                Cell.UpdateState(new SunkShipCell(Cell));
-            else
-                Cell.UpdateState(new TouchedShipCell(Cell));
+            Cell.UpdateState(new TouchedShipCell(Cell, ship));
         }
 
         public override CellStatus GetState()

@@ -1,15 +1,23 @@
-﻿namespace BattleshipKata.Cells.States
+﻿using BattleshipKata.Ships;
+
+namespace BattleshipKata.Cells.States
 {
     public class TouchedShipCell : CellState
     {
-        public TouchedShipCell(Cell cell) : base(cell)
+        private readonly Ship ship;
+
+        public TouchedShipCell(Cell cell, Ship ship) : base(cell)
         {
+            this.ship = ship;
         }
 
         public override void Fire()
         {
         }
 
-        public override CellStatus GetState() => CellStatus.Hit;
+        public override CellStatus GetState() 
+            => ship.IsSunk()
+                ? CellStatus.Sunk
+                : CellStatus.Hit;
     }
 }
