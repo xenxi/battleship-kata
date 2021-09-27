@@ -1,4 +1,5 @@
-﻿using BattleshipKata.Ships;
+﻿using BattleshipKata.Cells;
+using BattleshipKata.Ships;
 using BattleshipKata.ValueObjects;
 
 namespace BattleshipKata.Boards

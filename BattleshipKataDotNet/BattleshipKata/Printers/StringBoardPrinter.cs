@@ -1,4 +1,5 @@
-﻿using BattleshipKata.Boards;
+﻿using BattleshipKata.Cells;
+using BattleshipKata.Cells.States;
 using System.Collections.Generic;
 using System.Linq;
 

@@ -1,10 +1,11 @@
-﻿using BattleshipKata.Boards;
+﻿using BattleshipKata.Cells;
+using BattleshipKata.Cells.States;
 using BattleshipKata.Ships;
 using BattleshipKata.Tests.Ships;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace BattleshipKata.Tests.Boards
+namespace BattleshipKata.Tests.Cells
 {
     [TestFixture]
     public class CellShould
