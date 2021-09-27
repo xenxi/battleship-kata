@@ -1,4 +1,5 @@
 ﻿using BattleshipKata.ValueObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -42,5 +43,7 @@ namespace BattleshipKata.Ships
 
             return coordinates;
         }
+
+        public bool IsSunk() => State == ShipStatus.Sunken;
     }
 }

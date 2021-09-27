@@ -4,54 +4,38 @@ namespace BattleshipKata.Boards
 {
     public class Cell : ICell
     {
-        private bool fired;
+        private CellState state;
 
         public Cell(Ship ship)
         {
             Ship = ship;
-
-            fired = false;
+            state = new ShipCell(this, ship);
         }
 
+        private Cell()
+        {
+            Ship = new NullShip();
+            state = new WaterCell(this);
+        }
         public Ship Ship { get; }
 
         public CellStatus Status => CalculeStatus();
 
-        public static Cell Empty() => new Cell(Ship.Empty());
+        public static Cell Empty() => new Cell();
 
         public void Fire()
         {
-            Ship.Shot();
-            fired = true;
+            state.Fire();
         }
+
+        internal void UpdateState(CellState newState) => state = newState;
 
         private CellStatus CalculeStatus()
         {
-            if (fired)
-            {
-                if (Ship.Type == ShipType.NullShip)
-                    return CellStatus.Failed;
+            if (Ship.IsSunk())
+                return CellStatus.Sunk;
 
-                if (Ship.State == ShipStatus.Touched)
-                    return CellStatus.Hit;
-
-                if (Ship.State == ShipStatus.Sunken)
-                    return CellStatus.Sunk;
-            }
-
-            switch (Ship.Type)
-            {
-                case ShipType.Carrier:
-                    return CellStatus.Carrier;
-
-                case ShipType.Destroyer:
-                    return CellStatus.Destoyer;
-
-                case ShipType.GunShip:
-                    return CellStatus.GunShip;
-            }
-
-            return CellStatus.Water;
+            return state.GetState();
         }
     }
 }
