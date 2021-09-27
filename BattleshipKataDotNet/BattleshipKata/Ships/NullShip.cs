@@ -1,5 +1,4 @@
 ﻿using BattleshipKata.ValueObjects;
-using System;
 
 namespace BattleshipKata.Ships
 {

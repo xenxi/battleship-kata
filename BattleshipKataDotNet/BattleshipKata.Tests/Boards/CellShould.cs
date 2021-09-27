@@ -13,7 +13,7 @@ namespace BattleshipKata.Tests.Boards
         public void has_water_status_by_default()
         {
             var cell = Cell.Empty();
-             
+
             cell.Status.Should().Be(CellStatus.Water);
         }
 
@@ -36,6 +36,7 @@ namespace BattleshipKata.Tests.Boards
 
             cell.Status.Should().Be(CellStatus.Destoyer);
         }
+
         [Test]
         public void has_carrier_status_when_has_a_carrier()
         {

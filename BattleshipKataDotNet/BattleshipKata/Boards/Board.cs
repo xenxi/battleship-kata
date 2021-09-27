@@ -1,7 +1,6 @@
 ﻿using BattleshipKata.Exceptions;
 using BattleshipKata.Ships;
 using BattleshipKata.ValueObjects;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,6 +21,7 @@ namespace BattleshipKata.Boards
         public int Length => cells.Length;
         public Size Size { get; }
         public int Width => Size.Width;
+
         public static Board From(int width, int height)
             => new Board(new Size(width: width, height: height));
 

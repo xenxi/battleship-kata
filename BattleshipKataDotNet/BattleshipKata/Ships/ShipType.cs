@@ -1,5 +1,7 @@
-﻿namespace BattleshipKata.Ships {
-    public enum ShipType {
+﻿namespace BattleshipKata.Ships
+{
+    public enum ShipType
+    {
         NullShip,
         Carrier,
         Destroyer,

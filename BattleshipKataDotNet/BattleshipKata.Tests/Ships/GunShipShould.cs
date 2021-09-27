@@ -1,6 +1,5 @@
 ﻿using BattleshipKata.Ships;
 using BattleshipKata.Tests.ValueObjects;
-using BattleshipKata.ValueObjects;
 using FluentAssertions;
 using NUnit.Framework;
 

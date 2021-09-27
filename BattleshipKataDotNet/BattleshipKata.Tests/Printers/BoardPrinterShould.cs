@@ -33,6 +33,7 @@ namespace BattleshipKata.Tests.Printers
                 gamePrinter.Print("7|   |   |   |   |   |   |   |   | c |   |");
             });
         }
+
         [Test]
         public void print_gun_ship()
         {
@@ -44,6 +45,7 @@ namespace BattleshipKata.Tests.Printers
 
             gamePrinter.Received(1).Print("1|   | g |   |   |   |   |   |   |   |   |");
         }
+
         [Test]
         public void print_destroyer()
         {
@@ -79,6 +81,7 @@ namespace BattleshipKata.Tests.Printers
 
             gamePrinter.Received(1).Print("3|   |   |   | o |   |   |   |   |   |   |");
         }
+
         [Test]
         public void print_sunk_ship()
         {
@@ -112,6 +115,7 @@ namespace BattleshipKata.Tests.Printers
 
             gamePrinter.Received(1).Print(expectedHeader);
         }
+
         [SetUp]
         public void SetUp()
         {

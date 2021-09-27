@@ -49,6 +49,7 @@ namespace BattleshipKata.Tests.Boards
         {
             board = Board.From(WIDTH, HEIGHT);
         }
+
         [TestCase(WIDTH - 1, HEIGHT, 3, Orientation.Horizontal)]
         [TestCase(WIDTH, HEIGHT, 3, Orientation.Horizontal)]
         [TestCase(0, HEIGHT, 3, Orientation.Vertical)]

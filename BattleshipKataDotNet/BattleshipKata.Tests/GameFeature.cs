@@ -23,6 +23,7 @@ namespace BattleshipKata.Tests
 
             game = new Game(board, printer);
         }
+
         [Test]
         public void print_empty_game_report()
         {
@@ -46,6 +47,7 @@ namespace BattleshipKata.Tests
                 gamePrinter.Print("9|   |   |   |   |   | d |   |   |   | g |");
             });
         }
+
         [Test]
         public void print_played_game_report()
         {
@@ -100,14 +102,14 @@ namespace BattleshipKata.Tests
             game.Fire(x: 4, y: 3);
 
             game.Fire(x: 1, y: 4);
- 
+
             game.Fire(x: 1, y: 5);
             game.Fire(x: 2, y: 5);
             game.Fire(x: 5, y: 5);
 
             game.Fire(x: 3, y: 6);
             game.Fire(x: 6, y: 6);
-   
+
             game.Fire(x: 1, y: 7);
             game.Fire(x: 8, y: 7);
 

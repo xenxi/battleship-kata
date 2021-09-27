@@ -9,6 +9,7 @@ namespace BattleshipKata.Tests.Ships
         {
             Type = type;
         }
+
         public override ShipType Type { get; }
     }
 }

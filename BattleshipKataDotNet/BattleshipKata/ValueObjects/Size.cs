@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BattleshipKata.ValueObjects
+﻿namespace BattleshipKata.ValueObjects
 {
     public class Size
     {
