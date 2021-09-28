@@ -17,12 +17,15 @@ namespace BattleshipKata.Printers
         public void Print(ICell[,] cells)
         {
             PrintTotalShots(cells);
-
+            PrintTotalMisses(cells);
             PrintHeader(cells);
-
             PrintRows(cells);
         }
+        private void PrintTotalMisses(ICell[,] cells)
+        {
 
+            printer.Print($" Misses: 0");
+        }
         private void PrintTotalShots(ICell[,] cells)
         {
             var totalShots = cells

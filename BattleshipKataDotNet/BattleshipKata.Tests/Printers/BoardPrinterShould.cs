@@ -7,7 +7,6 @@ using BattleshipKata.Tests.ValueObjects;
 using BattleshipKata.ValueObjects;
 using NSubstitute;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 
 namespace BattleshipKata.Tests.Printers
@@ -120,6 +119,16 @@ namespace BattleshipKata.Tests.Printers
             gamePrinter.Received(1).Print("3|   |   | X | X | X |   |   |   |   |   |");
         }
 
+        [TestCaseSource(nameof(TestCasesForPrintMisses))]
+        public void print_total_misses((IBoard board, string outputStr) testCaseData)
+        {
+            var (aGivenBoard, expectedOutput) = testCaseData;
+
+            printer.Print(aGivenBoard.Cells);
+
+            gamePrinter.Received(1).Print(expectedOutput);
+        }
+
         [TestCaseSource(nameof(TestCasesForPrintTotalShots))]
         public void print_total_shots((IBoard board, string outputStr) testCaseData)
         {
@@ -129,12 +138,24 @@ namespace BattleshipKata.Tests.Printers
 
             gamePrinter.Received(1).Print(expectedOutput);
         }
-
         [SetUp]
         public void SetUp()
         {
             gamePrinter = Substitute.For<IStringPrinter>();
             printer = new StringBoardPrinter(gamePrinter);
+        }
+
+        private static IBoard BoardWithThreeSunkedShots()
+        {
+            var board = BoardMother.Random(SizeMother.Random(width: 10));
+
+            board.PlaceShip(ShipMother.Random(lenght: 3, position: Coordinates.From(0, 0), orientation: Orientation.Horizontal));
+
+            board.Fire(Coordinates.From(x: 0, y: 0));
+            board.Fire(Coordinates.From(x: 1, y: 0));
+            board.Fire(Coordinates.From(x: 2, y: 0));
+
+            return board;
         }
 
         private static IBoard boardWithTwoFailedShots()
@@ -161,7 +182,7 @@ namespace BattleshipKata.Tests.Printers
             return board;
         }
 
-        private static IEnumerable<(IBoard aGivenBoard, List<string> expectedOutput)> TestCasesForEmptyBoards()
+        private static IEnumerable<(IBoard board, List<string> strOutputs)> TestCasesForEmptyBoards()
         {
             yield return (BoardMother.Random(size: SizeMother.Random(width: 10, height: 9)), new List<string> {
              " | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
@@ -184,6 +205,11 @@ namespace BattleshipKata.Tests.Printers
         });
         }
 
+        private static IEnumerable<(IBoard board, string outputStr)> TestCasesForPrintMisses()
+        {
+            yield return (BoardMother.Random(), " Misses: 0");
+        }
+
         private static IEnumerable<(IBoard board, string outputStr)> TestCasesForPrintTotalShots()
         {
             yield return (BoardMother.Random(), " Total shots: 0");
@@ -193,19 +219,6 @@ namespace BattleshipKata.Tests.Printers
             yield return (BoardWithTwoHitShots(), " Total shots: 2");
 
             yield return (BoardWithThreeSunkedShots(), " Total shots: 3");
-        }
-
-        private static IBoard BoardWithThreeSunkedShots()
-        {
-            var board = BoardMother.Random(SizeMother.Random(width: 10));
-
-            board.PlaceShip(ShipMother.Random(lenght: 3, position: Coordinates.From(0, 0), orientation: Orientation.Horizontal));
-
-            board.Fire(Coordinates.From(x:0, y:0));
-            board.Fire(Coordinates.From(x:1, y:0));
-            board.Fire(Coordinates.From(x:2, y:0));
-
-            return board;
         }
     }
 }
