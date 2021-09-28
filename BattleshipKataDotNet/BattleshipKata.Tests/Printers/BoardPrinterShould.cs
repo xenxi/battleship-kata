@@ -207,7 +207,14 @@ namespace BattleshipKata.Tests.Printers
 
         private static IEnumerable<(IBoard board, string outputStr)> TestCasesForPrintMisses()
         {
-            yield return (BoardMother.Random(), " Misses: 0");
+            var board = BoardMother.Random(size: SizeMother.Random(width: 10));
+            yield return (board, " Misses: 0");
+
+            board.Fire(Coordinates.From(0, 0));
+            yield return (board, " Misses: 1");
+
+            board.Fire(Coordinates.From(1, 0));
+            yield return (board, " Misses: 2");
         }
 
         private static IEnumerable<(IBoard board, string outputStr)> TestCasesForPrintTotalShots()
