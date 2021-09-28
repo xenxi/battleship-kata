@@ -35,6 +35,37 @@ namespace BattleshipKata.Tests.Printers
         }
 
         [Test]
+        public void print_destroyer()
+        {
+            var aGivenBoard = BoardMother.Random(size: SizeMother.Random(width: 10, height: 5));
+            var aGivenDestroyer = new Destroyer(Orientation.Horizontal, new Coordinates(x: 2, y: 3));
+            aGivenBoard.PlaceShip(aGivenDestroyer);
+
+            printer.Print(aGivenBoard.Cells);
+
+            gamePrinter.Received(1).Print("3|   |   | d | d | d |   |   |   |   |   |");
+        }
+
+        [TestCaseSource(nameof(TestCasesForEmptyBoards))]
+        public void print_empty_board((IBoard aGivenBoard, List<string> expectedOutput) emptyBoardData)
+        {
+            printer.Print(emptyBoardData.aGivenBoard.Cells);
+
+            Received.InOrder(() => emptyBoardData.expectedOutput.ForEach(line => gamePrinter.Print(line)));
+        }
+
+        [Test]
+        public void print_failed_shot()
+        {
+            var aGivenBoard = BoardMother.Random(size: SizeMother.Random(width: 10, height: 5));
+            aGivenBoard.Fire(new Coordinates(x: 3, y: 3));
+
+            printer.Print(aGivenBoard.Cells);
+
+            gamePrinter.Received(1).Print("3|   |   |   | o |   |   |   |   |   |   |");
+        }
+
+        [Test]
         public void print_gun_ship()
         {
             var aGivenBoard = BoardMother.Random(size: SizeMother.Random(width: 10, height: 10));
@@ -46,16 +77,15 @@ namespace BattleshipKata.Tests.Printers
             gamePrinter.Received(1).Print("1|   | g |   |   |   |   |   |   |   |   |");
         }
 
-        [Test]
-        public void print_destroyer()
+        [TestCase(10, " | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |")]
+        [TestCase(5, " | 0 | 1 | 2 | 3 | 4 |")]
+        public void print_header(int aGivenWidth, string expectedHeader)
         {
-            var aGivenBoard = BoardMother.Random(size: SizeMother.Random(width: 10, height: 5));
-            var aGivenDestroyer = new Destroyer(Orientation.Horizontal, new Coordinates(x: 2, y: 3));
-            aGivenBoard.PlaceShip(aGivenDestroyer);
+            var aGivenBoard = BoardMother.Random(size: SizeMother.Random(width: aGivenWidth));
 
             printer.Print(aGivenBoard.Cells);
 
-            gamePrinter.Received(1).Print("3|   |   | d | d | d |   |   |   |   |   |");
+            gamePrinter.Received(1).Print(expectedHeader);
         }
 
         [Test]
@@ -69,17 +99,6 @@ namespace BattleshipKata.Tests.Printers
             printer.Print(aGivenBoard.Cells);
 
             gamePrinter.Received(1).Print("3|   |   | d | x | d |   |   |   |   |   |");
-        }
-
-        [Test]
-        public void print_failed_shot()
-        {
-            var aGivenBoard = BoardMother.Random(size: SizeMother.Random(width: 10, height: 5));
-            aGivenBoard.Fire(new Coordinates(x: 3, y: 3));
-
-            printer.Print(aGivenBoard.Cells);
-
-            gamePrinter.Received(1).Print("3|   |   |   | o |   |   |   |   |   |   |");
         }
 
         [Test]
@@ -97,32 +116,14 @@ namespace BattleshipKata.Tests.Printers
             gamePrinter.Received(1).Print("3|   |   | X | X | X |   |   |   |   |   |");
         }
 
-        [TestCaseSource(nameof(TestCasesForEmptyBoards))]
-        public void print_empty_board((IBoard aGivenBoard, List<string> expectedOutput) emptyBoardData)
+        [TestCaseSource(nameof(TestCasesForPrintTotalShots))]
+        public void print_total_shots((IBoard board, string outputStr) testCaseData)
         {
-            printer.Print(emptyBoardData.aGivenBoard.Cells);
-
-            Received.InOrder(() => emptyBoardData.expectedOutput.ForEach(line => gamePrinter.Print(line)));
-        }
-
-        [TestCase(10, " | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |")]
-        [TestCase(5, " | 0 | 1 | 2 | 3 | 4 |")]
-        public void print_header(int aGivenWidth, string expectedHeader)
-        {
-            var aGivenBoard = BoardMother.Random(size: SizeMother.Random(width: aGivenWidth));
+            var (aGivenBoard, expectedOutput) = testCaseData;
 
             printer.Print(aGivenBoard.Cells);
 
-            gamePrinter.Received(1).Print(expectedHeader);
-        }
-        [Test]
-        public void print_total_shots()
-        {
-            var aGivenBoard = BoardMother.Random();
- 
-            printer.Print(aGivenBoard.Cells);
-
-            gamePrinter.Received(1).Print(" Total shots: 0");
+            gamePrinter.Received(1).Print(expectedOutput);
         }
 
         [SetUp]
@@ -153,6 +154,11 @@ namespace BattleshipKata.Tests.Printers
              "1|   |   |   |   |   |   |",
              "2|   |   |   |   |   |   |"
         });
+        }
+
+        private static IEnumerable<(IBoard board, string outputStr)> TestCasesForPrintTotalShots()
+        {
+            yield return (BoardMother.Random(), " Total shots: 0");
         }
     }
 }
