@@ -2,6 +2,7 @@
 using BattleshipKata.Printers;
 using BattleshipKata.Ships;
 using BattleshipKata.Tests.Boards;
+using BattleshipKata.Tests.Ships;
 using BattleshipKata.Tests.ValueObjects;
 using BattleshipKata.ValueObjects;
 using NSubstitute;
@@ -135,6 +136,30 @@ namespace BattleshipKata.Tests.Printers
             printer = new StringBoardPrinter(gamePrinter);
         }
 
+        private static IBoard boardWithTwoFailedShots()
+        {
+            var board = BoardMother.Random(SizeMother.Random(width: 10));
+            board.Fire(Coordinates.From(x: 0, y: 0));
+            board.Fire(Coordinates.From(x: 0, y: 1));
+            return board;
+        }
+
+        private static IBoard BoardWithTwoHitShots()
+        {
+            var board = BoardMother.Random(SizeMother.Random(width: 10, height: 10));
+
+            var initialPositionShip = Coordinates.From(0, 0);
+            board.PlaceShip(ShipMother.Random(lenght: 2, position: initialPositionShip));
+
+            var initialPositionOtherShip = Coordinates.From(5, 5);
+            board.PlaceShip(ShipMother.Random(lenght: 2, position: initialPositionOtherShip));
+
+            board.Fire(initialPositionShip);
+            board.Fire(initialPositionOtherShip);
+
+            return board;
+        }
+
         private static IEnumerable<(IBoard aGivenBoard, List<string> expectedOutput)> TestCasesForEmptyBoards()
         {
             yield return (BoardMother.Random(size: SizeMother.Random(width: 10, height: 9)), new List<string> {
@@ -162,10 +187,9 @@ namespace BattleshipKata.Tests.Printers
         {
             yield return (BoardMother.Random(), " Total shots: 0");
 
-            IBoard boardWithtwoFailedShots = BoardMother.Random(SizeMother.Random(width: 10));
-            boardWithtwoFailedShots.Fire(Coordinates.From(x: 0, y: 0));
-            boardWithtwoFailedShots.Fire(Coordinates.From(x: 0, y: 1));
-            yield return (boardWithtwoFailedShots, " Total shots: 2");
+            yield return (boardWithTwoFailedShots(), " Total shots: 2");
+
+            yield return (BoardWithTwoHitShots(), " Total shots: 2");
         }
     }
 }
