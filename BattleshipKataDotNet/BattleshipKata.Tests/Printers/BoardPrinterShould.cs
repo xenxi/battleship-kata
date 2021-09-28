@@ -115,6 +115,15 @@ namespace BattleshipKata.Tests.Printers
 
             gamePrinter.Received(1).Print(expectedHeader);
         }
+        [Test]
+        public void print_total_shots()
+        {
+            var aGivenBoard = BoardMother.Random();
+ 
+            printer.Print(aGivenBoard.Cells);
+
+            gamePrinter.Received(1).Print(" Total shots: 0");
+        }
 
         [SetUp]
         public void SetUp()
