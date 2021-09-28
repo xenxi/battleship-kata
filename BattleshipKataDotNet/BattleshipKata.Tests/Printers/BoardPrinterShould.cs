@@ -47,11 +47,13 @@ namespace BattleshipKata.Tests.Printers
         }
 
         [TestCaseSource(nameof(TestCasesForEmptyBoards))]
-        public void print_empty_board((IBoard aGivenBoard, List<string> expectedOutput) emptyBoardData)
+        public void print_empty_board((IBoard board, List<string> strOutputs) testCaseData)
         {
-            printer.Print(emptyBoardData.aGivenBoard.Cells);
+            var (aGivenBoard, expectedOutput) = testCaseData;
 
-            Received.InOrder(() => emptyBoardData.expectedOutput.ForEach(line => gamePrinter.Print(line)));
+            printer.Print(aGivenBoard.Cells);
+
+            Received.InOrder(() => expectedOutput.ForEach(line => gamePrinter.Print(line)));
         }
 
         [Test]
