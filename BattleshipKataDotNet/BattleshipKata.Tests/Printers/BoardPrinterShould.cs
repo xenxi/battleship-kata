@@ -128,7 +128,15 @@ namespace BattleshipKata.Tests.Printers
 
             gamePrinter.Received(1).Print(expectedOutput);
         }
+        [TestCaseSource(nameof(TestCasesForPrintHits))]
+        public void print_total_hits((IBoard board, string outputStr) testCaseData)
+        {
+            var (aGivenBoard, expectedOutput) = testCaseData;
 
+            printer.Print(aGivenBoard.Cells);
+
+            gamePrinter.Received(1).Print(expectedOutput);
+        }
         [TestCaseSource(nameof(TestCasesForPrintTotalShots))]
         public void print_total_shots((IBoard board, string outputStr) testCaseData)
         {
@@ -207,14 +215,45 @@ namespace BattleshipKata.Tests.Printers
 
         private static IEnumerable<(IBoard board, string outputStr)> TestCasesForPrintMisses()
         {
-            var board = BoardMother.Random(size: SizeMother.Random(width: 10));
-            yield return (board, " Misses: 0");
+            var board_0 = BoardMother.Random(size: SizeMother.Random(width: 10));
+            yield return (board_0, " Misses: 0");
 
-            board.Fire(Coordinates.From(0, 0));
-            yield return (board, " Misses: 1");
+            var board_1 = BoardMother.Random(size: SizeMother.Random(width: 10));
+            board_1.Fire(Coordinates.From(0, 0));
+            yield return (board_1, " Misses: 1");
 
-            board.Fire(Coordinates.From(1, 0));
-            yield return (board, " Misses: 2");
+            var board_2 =  BoardMother.Random(size: SizeMother.Random(width: 10));
+            board_2.Fire(Coordinates.From(0, 0));
+            board_2.Fire(Coordinates.From(1, 0));
+            yield return (board_2, " Misses: 2");
+        }
+        private static IEnumerable<(IBoard board, string outputStr)> TestCasesForPrintHits()
+        {
+            var board_0 = CreateEmptyBoard();
+            yield return (board_0, " Hits: 0");
+
+            var board_1 = CreateEmptyBoard();
+            board_1.Fire(Coordinates.From(0, 0));
+            yield return (board_1, " Hits: 1");
+
+            var board_2 = CreateEmptyBoard();
+            board_2.Fire(Coordinates.From(0, 0));
+            board_2.Fire(Coordinates.From(1, 0));
+            yield return (board_2, " Hits: 2");
+
+            var board_3 = CreateEmptyBoard();
+            board_3.Fire(Coordinates.From(0, 0));
+            board_3.Fire(Coordinates.From(1, 0));
+            board_3.Fire(Coordinates.From(0, 1));
+            yield return (board_3, " Hits: 3");
+
+            static IBoard CreateEmptyBoard()
+            {
+                var board = BoardMother.Random(size: SizeMother.Random(width: 10));
+                board.PlaceShip(ShipMother.Random(lenght: 3, orientation: Orientation.Horizontal, position: Coordinates.From(0, 0)));
+                board.PlaceShip(ShipMother.Random(lenght: 1, position: Coordinates.From(0, 1)));
+                return board;
+            }
         }
 
         private static IEnumerable<(IBoard board, string outputStr)> TestCasesForPrintTotalShots()

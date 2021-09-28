@@ -18,6 +18,7 @@ namespace BattleshipKata.Printers
         {
             PrintTotalShots(cells);
             PrintTotalMisses(cells);
+            PrintTotalHits(cells);
             PrintHeader(cells);
             PrintRows(cells);
         }
@@ -29,6 +30,16 @@ namespace BattleshipKata.Printers
 
             printer.Print($" Misses: {misses}");
         }
+        private void PrintTotalHits(ICell[,] cells)
+        {
+            var hits = cells
+              .OfType<ICell>()
+              .Count(cell => cell.Status == CellStatus.Hit 
+              || cell.Status == CellStatus.Sunk);
+
+            printer.Print($" Hits: {hits}");
+        }
+
         private void PrintTotalShots(ICell[,] cells)
         {
             var totalShots = cells
