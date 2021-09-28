@@ -28,7 +28,8 @@ namespace BattleshipKata.Printers
             var failedShots = cells.OfType<ICell>().Count(cell => cell.Status == CellStatus.Failed);
             var hitedShots = cells.OfType<ICell>().Count(cell => cell.Status == CellStatus.Hit);
 
-            printer.Print($" Total shots: {failedShots + hitedShots}");
+            int totalShots = failedShots + hitedShots;
+            printer.Print($" Total shots: {totalShots}");
         }
 
         private void PrintRows(ICell[,] cells)
