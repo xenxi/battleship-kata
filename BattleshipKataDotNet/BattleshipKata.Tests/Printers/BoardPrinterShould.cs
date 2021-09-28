@@ -161,6 +161,11 @@ namespace BattleshipKata.Tests.Printers
         private static IEnumerable<(IBoard board, string outputStr)> TestCasesForPrintTotalShots()
         {
             yield return (BoardMother.Random(), " Total shots: 0");
+
+            IBoard boardWithtwoFailedShots = BoardMother.Random(SizeMother.Random(width: 10));
+            boardWithtwoFailedShots.Fire(Coordinates.From(x: 0, y: 0));
+            boardWithtwoFailedShots.Fire(Coordinates.From(x: 0, y: 1));
+            yield return (boardWithtwoFailedShots, " Total shots: 2");
         }
     }
 }

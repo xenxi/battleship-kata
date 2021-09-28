@@ -16,6 +16,9 @@ namespace BattleshipKata.ValueObjects
 
         public static Coordinates Empty() => new NullCoordinates();
 
+        public static Coordinates From(int x, int y)
+            => new Coordinates(x: x, y: y);
+
         public override bool Equals(object obj)
         {
             return Equals(obj as Coordinates);
