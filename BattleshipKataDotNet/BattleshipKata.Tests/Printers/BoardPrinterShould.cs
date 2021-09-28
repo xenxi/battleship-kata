@@ -7,6 +7,7 @@ using BattleshipKata.Tests.ValueObjects;
 using BattleshipKata.ValueObjects;
 using NSubstitute;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 
 namespace BattleshipKata.Tests.Printers
@@ -190,6 +191,21 @@ namespace BattleshipKata.Tests.Printers
             yield return (boardWithTwoFailedShots(), " Total shots: 2");
 
             yield return (BoardWithTwoHitShots(), " Total shots: 2");
+
+            yield return (BoardWithThreeSunkedShots(), " Total shots: 3");
+        }
+
+        private static IBoard BoardWithThreeSunkedShots()
+        {
+            var board = BoardMother.Random(SizeMother.Random(width: 10));
+
+            board.PlaceShip(ShipMother.Random(lenght: 3, position: Coordinates.From(0, 0), orientation: Orientation.Horizontal));
+
+            board.Fire(Coordinates.From(x:0, y:0));
+            board.Fire(Coordinates.From(x:1, y:0));
+            board.Fire(Coordinates.From(x:2, y:0));
+
+            return board;
         }
     }
 }
