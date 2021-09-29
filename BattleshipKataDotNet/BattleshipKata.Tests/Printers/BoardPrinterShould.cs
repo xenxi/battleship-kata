@@ -168,7 +168,7 @@ namespace BattleshipKata.Tests.Printers
 
         private static IBoard boardWithTwoFailedShots()
         {
-            var board = BoardMother.Random(SizeMother.Random(width: 10));
+            var board = BoardMother.Random(SizeMother.Random(width: 10, height:2));
             board.Fire(Coordinates.From(x: 0, y: 0));
             board.Fire(Coordinates.From(x: 0, y: 1));
             return board;
@@ -249,7 +249,7 @@ namespace BattleshipKata.Tests.Printers
 
             static IBoard CreateEmptyBoard()
             {
-                var board = BoardMother.Random(size: SizeMother.Random(width: 10));
+                var board = BoardMother.Random(size: SizeMother.Random(width: 10, height:2));
                 board.PlaceShip(ShipMother.Random(lenght: 3, orientation: Orientation.Horizontal, position: Coordinates.From(0, 0)));
                 board.PlaceShip(ShipMother.Random(lenght: 1, position: Coordinates.From(0, 1)));
                 return board;
