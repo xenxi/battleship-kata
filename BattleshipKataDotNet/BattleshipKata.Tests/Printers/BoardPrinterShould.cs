@@ -146,6 +146,15 @@ namespace BattleshipKata.Tests.Printers
 
             gamePrinter.Received(1).Print(expectedOutput);
         }
+
+        [Test]
+        public void print_player_name() {
+            var aGivenBoard = BoardMother.Random();
+
+            printer.Print(aGivenBoard.Cells);
+            
+            gamePrinter.Received(1).Print("[ Player1");
+        }
         [SetUp]
         public void SetUp()
         {

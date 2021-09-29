@@ -14,14 +14,19 @@ namespace BattleshipKata.Printers
             this.printer = printer;
         }
 
-        public void Print(ICell[,] cells)
-        {
+        public void Print(ICell[,] cells) {
+            PrintPlayerName();
             PrintTotalShots(cells);
             PrintTotalMisses(cells);
             PrintTotalHits(cells);
             PrintHeader(cells);
             PrintRows(cells);
         }
+
+        private void PrintPlayerName() {
+            printer.Print("[ Player1");
+        }
+
         private void PrintTotalMisses(ICell[,] cells)
         {
             var misses = cells
