@@ -3,23 +3,26 @@ using BattleshipKata.Cells.States;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BattleshipKata.Printers
-{
-    public class StringBoardPrinter : IBoardPrinter
-    {
+namespace BattleshipKata.Printers {
+    public class StringBoardPrinter : IBoardPrinter {
         private readonly IStringPrinter printer;
 
-        public StringBoardPrinter(IStringPrinter printer)
-        {
+        public StringBoardPrinter(IStringPrinter printer) {
             this.printer = printer;
         }
 
         public void Print(ICell[,] cells) {
+            var cellsStatus = cells
+                .OfType<ICell>().Select(cell => cell.Status).ToList();
+
             PrintPlayerName();
-            PrintTotalShots(cells);
-            PrintTotalMisses(cells);
-            PrintTotalHits(cells);
-            PrintHeader(cells);
+
+            PrintTotalShots(cellsStatus);
+            PrintTotalMisses(cellsStatus);
+            PrintTotalHits(cellsStatus);
+
+            var boardWidth = cells.GetLength(0);
+            PrintHeader(boardWidth);
             PrintRows(cells);
         }
 
@@ -27,43 +30,36 @@ namespace BattleshipKata.Printers
             printer.Print("[ Player1");
         }
 
-        private void PrintTotalMisses(ICell[,] cells)
-        {
-            var misses = cells
-              .OfType<ICell>()
-              .Count(cell => cell.Status == CellStatus.Failed);
+        private void PrintTotalMisses(IEnumerable<CellStatus> cellsStatus) {
+            var misses = cellsStatus
+                .Count(status => status == CellStatus.Failed);
 
             printer.Print($" Misses: {misses}");
         }
-        private void PrintTotalHits(ICell[,] cells)
-        {
-            var hits = cells
-              .OfType<ICell>()
-              .Count(cell => cell.Status == CellStatus.Hit 
-              || cell.Status == CellStatus.Sunk);
+
+        private void PrintTotalHits(IEnumerable<CellStatus> cellsStatus) {
+            var hits = cellsStatus
+                .Count(status => status == CellStatus.Hit
+                                 || status == CellStatus.Sunk);
 
             printer.Print($" Hits: {hits}");
         }
 
-        private void PrintTotalShots(ICell[,] cells)
-        {
-            var totalShots = cells
-                .OfType<ICell>()
-                .Count(cell => cell.Status == CellStatus.Failed
-                    || cell.Status == CellStatus.Hit
-                    || cell.Status == CellStatus.Sunk); 
+        private void PrintTotalShots(IEnumerable<CellStatus> cellsStatus) {
+            var totalShots = cellsStatus
+                .Count(status => status == CellStatus.Failed
+                                 || status == CellStatus.Hit
+                                 || status == CellStatus.Sunk);
 
             printer.Print($" Total shots: {totalShots}");
         }
 
-        private void PrintRows(ICell[,] cells)
-        {
+        private void PrintRows(ICell[,] cells) {
             for (int row = 0; row < cells.GetLength(1); row++)
                 PrintRow(cells, row);
         }
 
-        private void PrintRow(ICell[,] cells, int row)
-        {
+        private void PrintRow(ICell[,] cells, int row) {
             var rowData = new List<string>();
 
             for (int col = 0; col < cells.GetLength(0); col++)
@@ -74,10 +70,8 @@ namespace BattleshipKata.Printers
             printer.Print(rowString);
         }
 
-        private static string StatusToString(CellStatus status)
-        {
-            return status switch
-            {
+        private static string StatusToString(CellStatus status) {
+            return status switch {
                 CellStatus.Water => " ",
                 CellStatus.Destoyer => "d",
                 CellStatus.Carrier => "c",
@@ -89,16 +83,14 @@ namespace BattleshipKata.Printers
             };
         }
 
-        private void PrintHeader(ICell[,] cells)
-        {
-            var columnNumbers = Enumerable.Range(0, cells.GetLength(0)).Select(number => number.ToString());
+        private void PrintHeader(int boardWidth) {
+            var columnNumbers = Enumerable.Range(0, boardWidth).Select(number => number.ToString());
 
             string text = $" {formatRowData(columnNumbers)}";
             printer.Print(text);
         }
 
-        private static string formatRowData(IEnumerable<string> data)
-        {
+        private static string formatRowData(IEnumerable<string> data) {
             return $"| {string.Join(" | ", data)} |";
         }
     }
